@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "jieba", "jieba\jieba.pyproj", "{4BFBD74D-A7FE-4324-B542-DA43618E339B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BFBD74D-A7FE-4324-B542-DA43618E339B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BFBD74D-A7FE-4324-B542-DA43618E339B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B04F5A4-4F82-43FD-8E9E-4BC2B0AA354F}
+	EndGlobalSection
+EndGlobal
