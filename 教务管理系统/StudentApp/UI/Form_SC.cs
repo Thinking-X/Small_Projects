@@ -18,10 +18,31 @@ namespace StudentApp
         {
             InitializeComponent();
         }
+        private void Clean()
+        {
+            Sid.Text = "";
+            Cid.Text = "";
+            Scores.Text = "";
+            return;
+        }
         private void Form_SC_Load(object sender, EventArgs e)
         {
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+
+            Dictionary<string, string> Dic = new Dictionary<string, string>();
+            Dic.Add("学号", "Sid");
+            Dic.Add("课程号", "Cid");
+            Dic.Add("分数段", "Scores");
+            var t = Dic.Select(u => new { key = u.Key, value = u.Value });
+            Prop.DataSource = t.ToList();
+            Prop.DisplayMember = "key";
+            Prop.ValueMember = "value";
+
+            valText1.Visible = false;
+            valText2.Visible = false;
+            toLabel.Visible = false;
+            return;
         }
         int i;//表示第几页
         int count;//表示所查询的表一共几行
@@ -40,10 +61,30 @@ namespace StudentApp
             e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
             return;
         }
+        private void ChangeColumnNames(bool flag, string prop)
+        {
+            if (flag)
+            {
+                View_SC.Columns["Sid"].HeaderText = "学号";
+                View_SC.Columns["Cid"].HeaderText = "课程号";
+                View_SC.Columns["Scores"].HeaderText = "分数";
+            }
+            else
+            {
+                if (prop == "分数段")
+                {
+                    View_SC.Columns[0].HeaderText = "分数";
+                    return;
+                }
+                View_SC.Columns[0].HeaderText = prop;
+            }
+            return;
+        }
         private void Display_Click(object sender, EventArgs e)
         {
             View_SC.AutoGenerateColumns = true;
             View_SC.DataSource = scDao.DisplayTableSc();
+            ChangeColumnNames(true, "");
             count = scDao.GainSumline();
             UpPage.Enabled = false;
             DownPage.Enabled = false;
@@ -58,6 +99,7 @@ namespace StudentApp
                 i = 1;
                 View_SC.AutoGenerateColumns = true;
                 View_SC.DataSource = scDao.DisplayPage(num, i);
+                ChangeColumnNames(true, "");
                 UpPage.Enabled = false;
                 DownPage.Enabled = true;
                 count = scDao.GainSumline();
@@ -81,6 +123,7 @@ namespace StudentApp
             int num = Convert.ToInt32(LineNum.Text);
             View_SC.AutoGenerateColumns = true;
             View_SC.DataSource = scDao.DisplayPage(num, i);
+            ChangeColumnNames(true, "");
             DownPage.Enabled = true;
             return;
         }
@@ -110,24 +153,38 @@ namespace StudentApp
             }
             View_SC.AutoGenerateColumns = true;
             View_SC.DataSource = scDao.DisplayPage(num, i);
+            ChangeColumnNames(true, "");
             UpPage.Enabled = true;
             return;
         }
         private void Insert_Click(object sender, EventArgs e)
         {
             SC sc = new SC();
-            sc.Sid = Sid.Text;
-            sc.Cid = Cid.Text;
-            sc.Scores = Convert.ToDecimal(Scores.Text);
-            if (Insert.Text.Equals("添加"))
+            if((Sid.Text.Trim() == "") || (Cid.Text.Trim() == ""))
             {
-                scDao.Insert_SC(sc);
+                MessageBox.Show("请务必输入学号和课程号！");
+                return;
             }
             else
             {
-                scDao.Updata_SC(sc);
+                sc.Sid = Sid.Text;
+                sc.Cid = Cid.Text;
+            }
+            if(Scores.Text.Trim() != "")
+            {
+                sc.Scores = Convert.ToDecimal(Scores.Text);
+            }           
+            if (Insert.Text.Equals("添加"))
+            {
+                scDao.Insert_SC(sc);
+                Clean();
+            }
+            else
+            {
                 Sid.ReadOnly = false;
                 Cid.ReadOnly = false;
+                scDao.Updata_SC(sc);
+                Clean();               
                 Insert.Text = "添加";
             }
             return;
@@ -152,22 +209,54 @@ namespace StudentApp
             Cid.ReadOnly = true;
             return;
         }       
-        private void Prop_Click(object sender, EventArgs e)
-        {
-            Dictionary<string, string> Dic = new Dictionary<string, string>();
-            Dic.Add("学号", "No");
-            Dic.Add("课程号", "Cid");
-            Dic.Add("分数", "Scores");
-            var t = Dic.Select(u => new { key = u.Key, value = u.Value });
-            Prop.DataSource = t.ToList();
-            Prop.DisplayMember = "key";
-            Prop.ValueMember = "value";
-            return;
-        }
+        private void Prop_Click(object sender, EventArgs e){ }
         private void Select_Click(object sender, EventArgs e)
         {
             View_SC.AutoGenerateColumns = true;
-            View_SC.DataSource = scDao.Select_SC(Prop.SelectedValue.ToString(), Val.Text);
+            string prop = Prop.SelectedValue.ToString().Trim();
+            string val = Val.Text.ToString().Trim();
+            if( val != "")
+            {
+                if (prop == "Scores")
+                {
+                    string Scor1 = valText1.Text.ToString().Trim();
+                    string Scor2 = valText2.Text.ToString().Trim();
+                    if ((Scor1 != "") && (Scor2 != ""))
+                    {
+                        View_SC.DataSource = scDao.Select_SC3(prop, Scor1, Scor2);
+                        ChangeColumnNames(true, "");
+                    }
+                    else
+                    {
+                        MessageBox.Show("请输入合法的范围！");
+                    }
+                    return;
+                }
+                View_SC.DataSource = scDao.Select_SC2(prop, val);
+                ChangeColumnNames(true, "");
+            }
+            else
+            {
+                View_SC.DataSource = scDao.Select_SC1(prop)["T"];
+                ChangeColumnNames(false, Prop.Text.Trim());
+            }
+            return;
+        }
+        private void Prop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string prop = Prop.SelectedValue.ToString().Trim();
+            if (prop == "Scores")
+            {
+                Val.Visible = false;
+                valText1.Visible = true;
+                valText2.Visible = true;
+                toLabel.Visible = true;
+                return;
+            }
+            valText1.Visible = false;
+            valText2.Visible = false;
+            toLabel.Visible = false;
+            Val.Visible = true;
             return;
         }
         private void Delete_Click(object sender, EventArgs e)
@@ -183,6 +272,6 @@ namespace StudentApp
             }
             scDao.Delete_SC(View_SC.SelectedRows[0].Cells[0].Value.ToString(), View_SC.SelectedRows[0].Cells[1].Value.ToString());
             return;
-        }       
+        }
     }
 }

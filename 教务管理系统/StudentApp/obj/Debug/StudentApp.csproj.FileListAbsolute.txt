@@ -11,3 +11,4 @@ G:\repos\StudentApp\StudentApp\obj\Debug\StudentApp.pdb
 G:\repos\StudentApp\StudentApp\obj\Debug\StudentApp.UI.Form_Cour.resources
 G:\repos\StudentApp\StudentApp\obj\Debug\StudentApp.Form_Menu.resources
 G:\repos\StudentApp\StudentApp\obj\Debug\StudentApp.Form_SC.resources
+G:\repos\StudentApp\StudentApp\obj\Debug\StudentApp.UI.Form_Custom.resources

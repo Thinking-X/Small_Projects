@@ -18,12 +18,40 @@ namespace StudentApp
         {
             InitializeComponent();
         }
+        private void Clean()
+        {
+            Sid.Text = "";
+            Sname.Text = "";
+            radio_Y.Checked = false;
+            radio_X.Checked = false;
+            ClassName.Text = "";
+            AScores.Text = "";
+            Birthdate.Text = "";
+            return;
+        }
         int i;//表示第几页
         int count;//表示所查询的表一共几行
         private void Form_Stu_Load(object sender, EventArgs e)
         {
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+
+            Dictionary<string, string> Dic = new Dictionary<string, string>();
+            Dic.Add("学号", "Sid");
+            Dic.Add("姓名", "Sname");
+            Dic.Add("性别", "Sex");
+            Dic.Add("班级", "ClassName");
+            Dic.Add("生日(用“-”隔开)", "Birthdate");
+            Dic.Add("入学成绩段", "Ascores");         
+            var t = Dic.Select(u => new { key = u.Key, value = u.Value });
+            Prop.DataSource = t.ToList();
+            Prop.DisplayMember = "key";
+            Prop.ValueMember = "value";
+            
+            valText1.Visible = false;
+            valText2.Visible = false;
+            toLabel.Visible = false;
+            return;
         }
         StudentDAO StuDao = new StudentDAO();
         private void View_Stu_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)//为dataGridView增加索引列
@@ -39,10 +67,38 @@ namespace StudentApp
             e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
             return;
         }
+        private void ChangeColumnNames(bool flag, string prop)
+        {
+            if(flag)
+            {
+                View_Stu.Columns["Sid"].HeaderText = "学号";
+                View_Stu.Columns["Sname"].HeaderText = "姓名";
+                View_Stu.Columns["Sex"].HeaderText = "性别";
+                View_Stu.Columns["ClassName"].HeaderText = "班级";
+                View_Stu.Columns["Birthdate"].HeaderText = "出生日期";
+                View_Stu.Columns["AScores"].HeaderText = "入学成绩";
+            }
+            else
+            {
+                if(prop == "入学成绩段")
+                {
+                    View_Stu.Columns[0].HeaderText = "入学成绩";
+                    return;
+                }
+                if (prop == "生日(用“-”隔开)")
+                {
+                    View_Stu.Columns[0].HeaderText = "生日";
+                    return;
+                }
+                View_Stu.Columns[0].HeaderText = prop;
+            }
+            return;
+        }
         private void Display_Click(object sender, EventArgs e)
         {          
             View_Stu.AutoGenerateColumns = true;
             View_Stu.DataSource = StuDao.DisplayTableStu();
+            ChangeColumnNames(true, "");
             count = StuDao.GainSumline();
             UpPage.Enabled = false;
             DownPage.Enabled = false;
@@ -57,6 +113,7 @@ namespace StudentApp
                 i = 1;                               
                 View_Stu.AutoGenerateColumns = true;
                 View_Stu.DataSource = StuDao.DisplayPage(num,i);
+                ChangeColumnNames(true, "");
                 UpPage.Enabled = false;
                 DownPage.Enabled = true;
                 count = StuDao.GainSumline();
@@ -80,6 +137,7 @@ namespace StudentApp
             int num = Convert.ToInt32(LineNum.Text);           
             View_Stu.AutoGenerateColumns = true;
             View_Stu.DataSource = StuDao.DisplayPage(num, i);
+            ChangeColumnNames(true, "");
             DownPage.Enabled = true;
             return;
         }
@@ -109,18 +167,35 @@ namespace StudentApp
             }            
             View_Stu.AutoGenerateColumns = true;
             View_Stu.DataSource = StuDao.DisplayPage(num, i);
+            ChangeColumnNames(true, "");
             UpPage.Enabled = true;
             return;
         }
         private void Insert_Click(object sender, EventArgs e)
         {
             Student stu = new Student();
-            stu.Sid = Sid.Text;
-            stu.Sname = Sname.Text;
-            stu.Brithdate = Convert.ToDateTime(Brithdate.Text.ToString());
-            stu.Specialty = Specialty.Text;
-            stu.AScores = Convert.ToDecimal(AScores.Text);
-            bool flag = false;
+            if(Sid.Text.Trim() != "")
+            {
+                stu.Sid = Sid.Text;
+            }
+            else
+            {
+                MessageBox.Show("请务必输入学号！");
+                return;
+            }
+            if(Sname.Text.Trim() != "")
+            {
+                stu.Sname = Sname.Text;
+            }          
+            stu.Birthdate = Convert.ToDateTime(Birthdate.Text);
+            if (ClassName.Text.Trim() != "")
+            {
+                stu.ClassName = ClassName.Text;
+            }
+            if(AScores.Text.Trim() != "")
+            {
+                stu.AScores = Convert.ToDecimal(AScores.Text);
+            }              
             foreach (Control item in groupBox1.Controls)
             {
                 if (item is RadioButton)
@@ -129,24 +204,20 @@ namespace StudentApp
                     if (button.Checked)
                     {
                         stu.Sex = button.Text;
-                        flag = true;
                         break;
                     }
                 }
             }
-            if (!flag)
-            {
-                MessageBox.Show("请选择性别！");
-                return;
-            }
             if (Insert.Text.Equals("注册"))
             {
                 StuDao.Insert_Stu(stu);
+                Clean();
             }
             else
             {
-                StuDao.Updata_Stu(stu);
                 Sid.ReadOnly = false;
+                StuDao.Updata_Stu(stu);
+                Clean();              
                 Insert.Text = "注册";
             }
             return;
@@ -175,32 +246,105 @@ namespace StudentApp
             {
                 radio_X.Checked = true;
             }
-            Specialty.Text = View_Stu.SelectedRows[0].Cells[3].Value.ToString();
+            ClassName.Text = View_Stu.SelectedRows[0].Cells[3].Value.ToString();
             AScores.Text = View_Stu.SelectedRows[0].Cells[4].Value.ToString();
-            Brithdate.Text = View_Stu.SelectedRows[0].Cells[5].Value.ToString();
+            Birthdate.Text = View_Stu.SelectedRows[0].Cells[5].Value.ToString();
             Sid.ReadOnly = true;
             return;
         }
-        private void Prop_Click(object sender, EventArgs e)
-        {
-            //选择查找方式时触发的事件
-            Dictionary<string, string> Dic = new Dictionary<string, string>();
-            Dic.Add("学号", "Sid");
-            Dic.Add("姓名", "Sname");
-            Dic.Add("性别", "Sex");
-            Dic.Add("专业", "Specialty");
-            Dic.Add("分数", "Ascores");
-            Dic.Add("生日(用短线隔开)", "Brithdate");
-            var t = Dic.Select(u => new { key = u.Key, value = u.Value });
-            Prop.DataSource = t.ToList();
-            Prop.DisplayMember = "key";
-            Prop.ValueMember = "value";
-            return;
-        }
+        private void Prop_Click(object sender, EventArgs e){ }
         private void Select_Click(object sender, EventArgs e)
         {
             View_Stu.AutoGenerateColumns = true;
-            View_Stu.DataSource = StuDao.Select_Stu(Prop.SelectedValue.ToString(), Val.Text);                    
+            string prop = Prop.SelectedValue.ToString().Trim();
+            string val = Val.Text.ToString().Trim();
+            if (val != "")
+            {
+                if (prop == "Birthdate")
+                {
+                    int date_;
+                    if (int.TryParse(val, out date_))
+                    {
+                        View_Stu.DataSource = StuDao.Select_Stu2(prop, val);
+                        ChangeColumnNames(true, "");
+                        return;
+                    }
+                    DateTime date;
+                    if (DateTime.TryParse(val, out date))
+                    {
+                        string[] Date = val.Split('-');
+                        if (Date.Length == 2)
+                        {
+                            if (Date[1].Length == 1)
+                            {
+                                val = Date[0] + "-0" + Date[1];
+                            }
+                            View_Stu.DataSource = StuDao.Select_Stu2(prop, val);
+                            ChangeColumnNames(true, "");
+                            return;
+                        }
+                        if (Date.Length == 3)
+                        {
+                            if (Date[1].Length == 1)
+                            {
+                                Date[1] = "0" + Date[1];
+                            }
+                            if (Date[2].Length == 1)
+                            {
+                                Date[2] = "0" + Date[2];
+                            }
+                            val = Date[0] + "-" + Date[1] + "-" + Date[2];
+                            View_Stu.DataSource = StuDao.Select_Stu2(prop, val);
+                            ChangeColumnNames(true, "");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("输入正确的日期格式！");
+                        return;
+                    }
+                }
+                if (prop == "Ascores")
+                {
+                    string Scor1 = valText1.Text.ToString().Trim();
+                    string Scor2 = valText2.Text.ToString().Trim();
+                    if ((Scor1 != "") && (Scor2 != ""))
+                    {
+                        View_Stu.DataSource = StuDao.Select_Stu3(prop, Scor1, Scor2);
+                        ChangeColumnNames(true, "");
+                    }
+                    else
+                    {
+                        MessageBox.Show("请输入合法的范围！");
+                    }
+                    return;
+                }
+                View_Stu.DataSource = StuDao.Select_Stu2(prop, val);
+                ChangeColumnNames(true, "");
+            }
+            else
+            {
+                View_Stu.DataSource = StuDao.Select_Stu1(prop)["T"];
+                ChangeColumnNames(false, Prop.Text.Trim());
+            }
+            return;
+        }
+        private void Prop_SelectedIndexChanged(object sender, EventArgs e)
+        {           
+            string prop = Prop.SelectedValue.ToString().Trim();            
+            if(prop == "Ascores")
+            {
+                Val.Visible = false;
+                valText1.Visible = true;
+                valText2.Visible = true;
+                toLabel.Visible = true;
+                return;
+            }
+            valText1.Visible = false;
+            valText2.Visible = false;
+            toLabel.Visible = false;
+            Val.Visible = true;
             return;
         }
         private void Delete_Click(object sender, EventArgs e)

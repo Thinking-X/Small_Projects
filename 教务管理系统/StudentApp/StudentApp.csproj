@@ -46,14 +46,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\CourseDAO.cs" />
+    <Compile Include="DAL\CustomDAO.cs" />
     <Compile Include="DAL\DBHelper.cs" />
     <Compile Include="DAL\SCDAO.cs" />
     <Compile Include="DAL\StudentDAO.cs" />
+    <Compile Include="PublicClass\All.cs" />
     <Compile Include="UI\Form_Cour.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Form_Cour.Designer.cs">
       <DependentUpon>Form_Cour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Form_Custom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_Custom.Designer.cs">
+      <DependentUpon>Form_Custom.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Form_Menu.cs">
       <SubType>Form</SubType>
@@ -80,6 +88,9 @@
     <Compile Include="PublicClass\Student.cs" />
     <EmbeddedResource Include="UI\Form_Cour.resx">
       <DependentUpon>Form_Cour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_Custom.resx">
+      <DependentUpon>Form_Custom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Menu.resx">
       <DependentUpon>Form_Menu.cs</DependentUpon>

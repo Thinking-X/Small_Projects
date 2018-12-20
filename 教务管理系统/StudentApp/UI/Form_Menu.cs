@@ -20,19 +20,25 @@ namespace StudentApp
         private void Student_Click(object sender, EventArgs e)
         {
             Result = 1;
-            this.Close();
+            this.Dispose();
             return;
         }
         private void Course_Click(object sender, EventArgs e)
         {
             Result = 2;
-            this.Close();
+            this.Dispose();
             return;
         }
         private void SC_Click(object sender, EventArgs e)
         {
             Result = 3;
-            this.Close();
+            this.Dispose();
+            return;
+        }
+        private void Custom_Click(object sender, EventArgs e)
+        {
+            Result = 4;
+            this.Dispose();
             return;
         }
     }

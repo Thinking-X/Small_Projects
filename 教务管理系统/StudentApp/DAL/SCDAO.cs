@@ -1,6 +1,7 @@
 ﻿using StudentApp.PublicClass;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,12 @@ namespace StudentApp.DAL
 {
     class SCDAO
     {
+        public SCDAO()
+        {
+            con = DBHelper.Connect();
+        }
+        SqlConnection con;
+        SqlTransaction tran = null;
         public List<SC> Deliver(SqlDataReader reader)
         {
             List<SC> list = new List<SC>();
@@ -22,17 +29,15 @@ namespace StudentApp.DAL
                 if(!(reader["Scores"] is DBNull))
                 {
                     sc.Scores = Convert.ToDecimal(reader["Scores"]);
-                }               
+                }
                 list.Add(sc);
             }
             return list;
         }
         public List<SC> DisplayTableSc()
         {
-            SqlConnection con = DBHelper.Connect();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = "select * from sc";
+            string Sentence = "select * from sc";
+            SqlCommand cmd = new SqlCommand(Sentence, con, tran);
             con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             List<SC> list = Deliver(reader);
@@ -41,22 +46,17 @@ namespace StudentApp.DAL
         }
         public int GainSumline()//获取表的总行数
         {
-            SqlConnection con = DBHelper.Connect();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
+            string Sentence = "select count(*) from sc";
+            SqlCommand cmd = new SqlCommand(Sentence, con, tran);
             con.Open();
-            cmd.CommandText = "select count(*) from sc";
             int sum = (int)cmd.ExecuteScalar();
             con.Close();
             return sum;
         }
         public List<SC> DisplayPage(int LineNum, int i)
         {
-            SqlConnection con = DBHelper.Connect();
-            SqlCommand cmd = new SqlCommand();
             string Sentence = String.Format("select * from (select ROW_NUMBER() over(order by sid) as RowNo, * from sc) as part where RowNo between ({0}*({1}-1)+1) and ({2}*{3})", LineNum, i, LineNum, i);
-            cmd.CommandText = Sentence;
-            cmd.Connection = con;
+            SqlCommand cmd = new SqlCommand(Sentence, con, tran);
             con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             List<SC> list = Deliver(reader);
@@ -65,11 +65,8 @@ namespace StudentApp.DAL
         }
         public void Insert_SC(SC sc)
         {
-            string insert = string.Format("insert into SC values ({0}, '{1}', {2})", sc.Sid, sc.Cid, sc.Scores);
-            SqlConnection con = DBHelper.Connect();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = insert;
+            string insert = string.Format("insert into SC values ('{0}', '{1}', {2})", sc.Sid, sc.Cid, sc.Scores);
+            SqlCommand cmd = new SqlCommand(insert, con, tran);
             con.Open();
             try
             {
@@ -92,10 +89,7 @@ namespace StudentApp.DAL
         public void Delete_SC(string sid,string cid)
         {
             string delete = String.Format("delete sc where sid = '{0}' and  cid='{1}'", sid, cid);
-            SqlConnection con = DBHelper.Connect();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = delete;
+            SqlCommand cmd = new SqlCommand(delete, con, tran);
             con.Open();
             try
             {
@@ -117,11 +111,8 @@ namespace StudentApp.DAL
         }
         public void Updata_SC(SC sc)
         {
-            string update = string.Format("update sc set scores = '{0}'  where sid = '{1}' and cid = '{2}'", sc.Scores, sc.Sid, sc.Cid);
-            SqlConnection con = DBHelper.Connect();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = update;
+            string update = string.Format("update sc set scores = '{0}' where sid = '{1}' and cid = '{2}'", sc.Scores, sc.Sid, sc.Cid);
+            SqlCommand cmd = new SqlCommand(update, con, tran);
             con.Open();
             try
             {
@@ -141,13 +132,31 @@ namespace StudentApp.DAL
             con.Close();
             return;
         }
-        public List<SC> Select_SC(string Prop, string Val)
+        public DataTableCollection Select_SC1(string Prop)
+        {
+            string select = "select " + Prop + " from sc";
+            SqlCommand cmd = new SqlCommand(select, con, tran);
+            con.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet Data = new DataSet();
+            adapter.Fill(Data, "T");
+            con.Close();
+            return Data.Tables;
+        }
+        public List<SC> Select_SC2(string Prop, string Val)
         {
             string select = "select * from sc where " + Prop + " like " + "'%" + Val + "%'";
-            SqlConnection con = DBHelper.Connect();
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = con;
-            cmd.CommandText = select;
+            SqlCommand cmd = new SqlCommand(select, con, tran);
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<SC> list = Deliver(reader);
+            con.Close();
+            return list;
+        }
+        public List<SC> Select_SC3(string Prop, string Scor1, string Scor2)
+        {
+            string select = String.Format("select * from SC where {0} between {1} and {2}", Prop, Scor1, Scor2);
+            SqlCommand cmd = new SqlCommand(select, con, tran);
             con.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             List<SC> list = Deliver(reader);

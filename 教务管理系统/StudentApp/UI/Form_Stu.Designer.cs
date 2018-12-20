@@ -31,13 +31,16 @@
             this.radio_Y = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radio_X = new System.Windows.Forms.RadioButton();
-            this.Brithdate = new System.Windows.Forms.DateTimePicker();
+            this.Birthdate = new System.Windows.Forms.DateTimePicker();
             this.Delete = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.Val = new System.Windows.Forms.TextBox();
             this.Prop = new System.Windows.Forms.ComboBox();
             this.SelectBox = new System.Windows.Forms.GroupBox();
+            this.valText2 = new System.Windows.Forms.TextBox();
+            this.toLabel = new System.Windows.Forms.Label();
+            this.valText1 = new System.Windows.Forms.TextBox();
             this.Select = new System.Windows.Forms.Button();
             this.Update = new System.Windows.Forms.Button();
             this.Sname = new System.Windows.Forms.TextBox();
@@ -51,7 +54,7 @@
             this.Insert = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.Display = new System.Windows.Forms.Button();
-            this.Specialty = new System.Windows.Forms.TextBox();
+            this.ClassName = new System.Windows.Forms.TextBox();
             this.View_Stu = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -97,12 +100,12 @@
             this.radio_X.Text = "女";
             this.radio_X.UseVisualStyleBackColor = true;
             // 
-            // Brithdate
+            // Birthdate
             // 
-            this.Brithdate.Location = new System.Drawing.Point(931, 268);
-            this.Brithdate.Name = "Brithdate";
-            this.Brithdate.Size = new System.Drawing.Size(173, 25);
-            this.Brithdate.TabIndex = 52;
+            this.Birthdate.Location = new System.Drawing.Point(931, 268);
+            this.Birthdate.Name = "Birthdate";
+            this.Birthdate.Size = new System.Drawing.Size(158, 25);
+            this.Birthdate.TabIndex = 52;
             // 
             // Delete
             // 
@@ -117,11 +120,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(33, 80);
+            this.label8.Location = new System.Drawing.Point(20, 84);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(67, 15);
+            this.label8.Size = new System.Drawing.Size(83, 15);
             this.label8.TabIndex = 32;
-            this.label8.Text = "请输入：";
+            this.label8.Text = "输入(选填)";
             // 
             // label7
             // 
@@ -136,32 +139,60 @@
             // 
             this.Val.Location = new System.Drawing.Point(126, 77);
             this.Val.Name = "Val";
-            this.Val.Size = new System.Drawing.Size(182, 25);
+            this.Val.Size = new System.Drawing.Size(167, 25);
             this.Val.TabIndex = 30;
             // 
             // Prop
             // 
+            this.Prop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Prop.FormattingEnabled = true;
             this.Prop.Location = new System.Drawing.Point(126, 33);
             this.Prop.Name = "Prop";
-            this.Prop.Size = new System.Drawing.Size(182, 23);
+            this.Prop.Size = new System.Drawing.Size(167, 23);
             this.Prop.TabIndex = 29;
+            this.Prop.SelectedIndexChanged += new System.EventHandler(this.Prop_SelectedIndexChanged);
             this.Prop.Click += new System.EventHandler(this.Prop_Click);
             // 
             // SelectBox
             // 
+            this.SelectBox.Controls.Add(this.valText2);
+            this.SelectBox.Controls.Add(this.toLabel);
             this.SelectBox.Controls.Add(this.Delete);
             this.SelectBox.Controls.Add(this.label8);
+            this.SelectBox.Controls.Add(this.valText1);
             this.SelectBox.Controls.Add(this.label7);
             this.SelectBox.Controls.Add(this.Val);
             this.SelectBox.Controls.Add(this.Prop);
             this.SelectBox.Controls.Add(this.Select);
-            this.SelectBox.Location = new System.Drawing.Point(412, 313);
+            this.SelectBox.Location = new System.Drawing.Point(441, 337);
             this.SelectBox.Name = "SelectBox";
-            this.SelectBox.Size = new System.Drawing.Size(346, 217);
+            this.SelectBox.Size = new System.Drawing.Size(344, 238);
             this.SelectBox.TabIndex = 49;
             this.SelectBox.TabStop = false;
             this.SelectBox.Text = "查找/删除";
+            // 
+            // valText2
+            // 
+            this.valText2.Location = new System.Drawing.Point(245, 77);
+            this.valText2.Name = "valText2";
+            this.valText2.Size = new System.Drawing.Size(48, 25);
+            this.valText2.TabIndex = 57;
+            // 
+            // toLabel
+            // 
+            this.toLabel.AutoSize = true;
+            this.toLabel.Location = new System.Drawing.Point(202, 83);
+            this.toLabel.Name = "toLabel";
+            this.toLabel.Size = new System.Drawing.Size(15, 15);
+            this.toLabel.TabIndex = 58;
+            this.toLabel.Text = "-";
+            // 
+            // valText1
+            // 
+            this.valText1.Location = new System.Drawing.Point(126, 77);
+            this.valText1.Name = "valText1";
+            this.valText1.Size = new System.Drawing.Size(52, 25);
+            this.valText1.TabIndex = 56;
             // 
             // Select
             // 
@@ -199,7 +230,7 @@
             // 
             // Sid
             // 
-            this.Sid.Location = new System.Drawing.Point(931, 8);
+            this.Sid.Location = new System.Drawing.Point(931, 18);
             this.Sid.Name = "Sid";
             this.Sid.Size = new System.Drawing.Size(128, 25);
             this.Sid.TabIndex = 44;
@@ -211,7 +242,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 15);
             this.label6.TabIndex = 43;
-            this.label6.Text = "分数";
+            this.label6.Text = "成绩";
             // 
             // label4
             // 
@@ -229,7 +260,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 15);
             this.label3.TabIndex = 40;
-            this.label3.Text = "专业";
+            this.label3.Text = "班级";
             // 
             // label2
             // 
@@ -243,7 +274,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(879, 11);
+            this.label1.Location = new System.Drawing.Point(879, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 15);
             this.label1.TabIndex = 38;
@@ -270,20 +301,20 @@
             // 
             // Display
             // 
-            this.Display.Location = new System.Drawing.Point(55, 313);
+            this.Display.Location = new System.Drawing.Point(59, 313);
             this.Display.Name = "Display";
-            this.Display.Size = new System.Drawing.Size(155, 44);
+            this.Display.Size = new System.Drawing.Size(140, 44);
             this.Display.TabIndex = 35;
             this.Display.Text = "显示全部学生";
             this.Display.UseVisualStyleBackColor = true;
             this.Display.Click += new System.EventHandler(this.Display_Click);
             // 
-            // Specialty
+            // ClassName
             // 
-            this.Specialty.Location = new System.Drawing.Point(931, 167);
-            this.Specialty.Name = "Specialty";
-            this.Specialty.Size = new System.Drawing.Size(128, 25);
-            this.Specialty.TabIndex = 46;
+            this.ClassName.Location = new System.Drawing.Point(931, 167);
+            this.ClassName.Name = "ClassName";
+            this.ClassName.Size = new System.Drawing.Size(128, 25);
+            this.ClassName.TabIndex = 46;
             // 
             // View_Stu
             // 
@@ -303,9 +334,9 @@
             this.groupBox2.Controls.Add(this.UpPage);
             this.groupBox2.Controls.Add(this.FirstPage);
             this.groupBox2.Controls.Add(this.LineNum);
-            this.groupBox2.Location = new System.Drawing.Point(12, 371);
+            this.groupBox2.Location = new System.Drawing.Point(35, 371);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(239, 183);
+            this.groupBox2.Size = new System.Drawing.Size(257, 204);
             this.groupBox2.TabIndex = 54;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "分页显示";
@@ -321,7 +352,7 @@
             // 
             // DownPage
             // 
-            this.DownPage.Location = new System.Drawing.Point(43, 144);
+            this.DownPage.Location = new System.Drawing.Point(48, 150);
             this.DownPage.Name = "DownPage";
             this.DownPage.Size = new System.Drawing.Size(155, 33);
             this.DownPage.TabIndex = 3;
@@ -331,7 +362,7 @@
             // 
             // UpPage
             // 
-            this.UpPage.Location = new System.Drawing.Point(43, 106);
+            this.UpPage.Location = new System.Drawing.Point(48, 107);
             this.UpPage.Name = "UpPage";
             this.UpPage.Size = new System.Drawing.Size(155, 31);
             this.UpPage.TabIndex = 2;
@@ -341,7 +372,7 @@
             // 
             // FirstPage
             // 
-            this.FirstPage.Location = new System.Drawing.Point(43, 63);
+            this.FirstPage.Location = new System.Drawing.Point(48, 63);
             this.FirstPage.Name = "FirstPage";
             this.FirstPage.Size = new System.Drawing.Size(155, 33);
             this.FirstPage.TabIndex = 1;
@@ -360,10 +391,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1120, 566);
+            this.ClientSize = new System.Drawing.Size(1103, 599);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.Brithdate);
+            this.Controls.Add(this.Birthdate);
             this.Controls.Add(this.SelectBox);
             this.Controls.Add(this.Update);
             this.Controls.Add(this.Sname);
@@ -377,8 +408,9 @@
             this.Controls.Add(this.Insert);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.Display);
-            this.Controls.Add(this.Specialty);
+            this.Controls.Add(this.ClassName);
             this.Controls.Add(this.View_Stu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form_Stu";
             this.Text = "Form_Stu";
             this.Load += new System.EventHandler(this.Form_Stu_Load);
@@ -399,7 +431,7 @@
         private System.Windows.Forms.RadioButton radio_Y;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radio_X;
-        private System.Windows.Forms.DateTimePicker Brithdate;
+        private System.Windows.Forms.DateTimePicker Birthdate;
         private System.Windows.Forms.Button Delete;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -419,7 +451,7 @@
         private System.Windows.Forms.Button Insert;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button Display;
-        private System.Windows.Forms.TextBox Specialty;
+        private System.Windows.Forms.TextBox ClassName;
         private System.Windows.Forms.DataGridView View_Stu;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label9;
@@ -427,6 +459,9 @@
         private System.Windows.Forms.Button UpPage;
         private System.Windows.Forms.Button FirstPage;
         private System.Windows.Forms.TextBox LineNum;
+        private System.Windows.Forms.TextBox valText1;
+        private System.Windows.Forms.TextBox valText2;
+        private System.Windows.Forms.Label toLabel;
     }
 }
 

@@ -18,12 +18,35 @@ namespace StudentApp.UI
         {
             InitializeComponent();
         }
+        private void Clean()
+        {
+            No.Text = "";
+            Cid.Text = "";
+            Cname.Text = "";
+            Credit.Text = "";
+            return;
+        }
         int i;//表示第几页
         int count;//表示所查询的表一共几行
         private void Form_Cour_Load(object sender, EventArgs e)
         {
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+
+            Dictionary<string, string> Dic = new Dictionary<string, string>();
+            Dic.Add("编号", "No");
+            Dic.Add("课程号", "Cid");
+            Dic.Add("课程名", "Cname");
+            Dic.Add("学分段", "Credit");
+            var t = Dic.Select(u => new { key = u.Key, value = u.Value });
+            Prop.DataSource = t.ToList();
+            Prop.DisplayMember = "key";
+            Prop.ValueMember = "value";
+
+            valText1.Visible = false;
+            valText2.Visible = false;
+            toLabel.Visible = false;
+            return;
         }
         CourseDAO CourDao = new CourseDAO();
         private void View_Cour_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -39,10 +62,31 @@ namespace StudentApp.UI
             e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
             return;
         }
+        private void ChangeColumnNames(bool flag, string prop)
+        {
+            if (flag)
+            {
+                View_Cour.Columns["No"].HeaderText = "编号";
+                View_Cour.Columns["Cid"].HeaderText = "课程号";
+                View_Cour.Columns["Cname"].HeaderText = "课程名";
+                View_Cour.Columns["Credit"].HeaderText = "学分";
+            }
+            else
+            {
+                if (prop == "学分段")
+                {
+                    View_Cour.Columns[0].HeaderText = "学分";
+                    return;
+                }
+                View_Cour.Columns[0].HeaderText = prop;
+            }
+            return;
+        }
         private void Display_Click(object sender, EventArgs e)
         {
             View_Cour.AutoGenerateColumns = true;
             View_Cour.DataSource = CourDao.DisplayTableCour();
+            ChangeColumnNames(true, "");
             count = CourDao.GainSumline();
             UpPage.Enabled = false;
             DownPage.Enabled = false;
@@ -57,6 +101,7 @@ namespace StudentApp.UI
                 i = 1;
                 View_Cour.AutoGenerateColumns = true;
                 View_Cour.DataSource = CourDao.DisplayPage(num, i);
+                ChangeColumnNames(true, "");
                 UpPage.Enabled = false;
                 DownPage.Enabled = true;
                 count = CourDao.GainSumline();
@@ -80,6 +125,7 @@ namespace StudentApp.UI
             int num = Convert.ToInt32(LineNum.Text);
             View_Cour.AutoGenerateColumns = true;
             View_Cour.DataSource = CourDao.DisplayPage(num, i);
+            ChangeColumnNames(true, "");
             DownPage.Enabled = true;
             return;
         }
@@ -109,25 +155,44 @@ namespace StudentApp.UI
             }
             View_Cour.AutoGenerateColumns = true;
             View_Cour.DataSource = CourDao.DisplayPage(num, i);
+            ChangeColumnNames(true, "");
             UpPage.Enabled = true;
             return;
         }
         private void Insert_Click(object sender, EventArgs e)
         {
             Course cour = new Course();
-            cour.No = Convert.ToInt32(No.Text);
-            cour.Cid = Cid.Text;
-            cour.Cname = Cname.Text;
-            cour.Credit = Convert.ToDecimal(Credit.Text);
-            if (Insert.Text.Equals("添加"))
+            if (Cid.Text.Trim() != "")
             {
-                CourDao.Insert_Cour(cour);
-
+                cour.Cid = Cid.Text;
             }
             else
             {
-                CourDao.Updata_Cour(cour);
+                MessageBox.Show("请务必输入课程号！");
+                return;
+            }
+            if (No.Text.Trim() != "")
+            {
+                cour.No = Convert.ToInt32(No.Text);
+            }
+            if(Cname.Text.Trim() != "")
+            {
+                cour.Cname = Cname.Text;
+            }           
+            if(Credit.Text.Trim() != "")
+            {
+                cour.Credit = Convert.ToDecimal(Credit.Text);
+            }          
+            if (Insert.Text.Equals("添加"))
+            {
+                CourDao.Insert_Cour(cour);
+                Clean();
+            }
+            else
+            {
                 Cid.ReadOnly = false;
+                CourDao.Updata_Cour(cour);
+                Clean();
                 Insert.Text = "添加";
             }
             return;
@@ -152,23 +217,54 @@ namespace StudentApp.UI
             Cid.ReadOnly = true;
             return;
         }
-        private void Prop_Click(object sender, EventArgs e)
-        {
-            Dictionary<string, string> Dic = new Dictionary<string, string>();
-            Dic.Add("编号", "No");
-            Dic.Add("课程号", "Cid");
-            Dic.Add("课程名", "Cname");
-            Dic.Add("学分", "Credit");
-            var t = Dic.Select(u => new { key = u.Key, value = u.Value });
-            Prop.DataSource = t.ToList();
-            Prop.DisplayMember = "key";
-            Prop.ValueMember = "value";
-            return;
-        }
+        private void Prop_Click(object sender, EventArgs e){ }
         private void Select_Click(object sender, EventArgs e)
         {
             View_Cour.AutoGenerateColumns = true;
-            View_Cour.DataSource = CourDao.Select_Cour(Prop.SelectedValue.ToString(), Val.Text);
+            string prop = Prop.SelectedValue.ToString().Trim();
+            string val = Val.Text.ToString().Trim();
+            if(val != "")
+            {
+                if (prop == "Credit")
+                {
+                    string Scor1 = valText1.Text.ToString().Trim();
+                    string Scor2 = valText2.Text.ToString().Trim();
+                    if ((Scor1 != "") && (Scor2 != ""))
+                    {
+                        View_Cour.DataSource = CourDao.Select_Cour3(prop, Scor1, Scor2);
+                        ChangeColumnNames(true, "");
+                    }
+                    else
+                    {
+                        MessageBox.Show("请输入合法的范围！");
+                    }
+                    return;
+                }
+                View_Cour.DataSource = CourDao.Select_Cour2(prop, val);
+                ChangeColumnNames(true, "");
+            }
+            else
+            {
+                View_Cour.DataSource = CourDao.Select_Cour1(prop)["T"];
+                ChangeColumnNames(false, Prop.Text.Trim());
+            }
+            return;
+        }
+        private void Prop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string prop = Prop.SelectedValue.ToString().Trim();
+            if (prop == "Credit")
+            {
+                Val.Visible = false;
+                valText1.Visible = true;
+                valText2.Visible = true;
+                toLabel.Visible = true;
+                return;
+            }
+            valText1.Visible = false;
+            valText2.Visible = false;
+            toLabel.Visible = false;
+            Val.Visible = true;
             return;
         }
         private void Delete_Click(object sender, EventArgs e)
@@ -184,6 +280,6 @@ namespace StudentApp.UI
             }
             CourDao.Delete_Cour(View_Cour.SelectedRows[0].Cells[0].Value.ToString());
             return;
-        }       
+        }      
     }
 }
