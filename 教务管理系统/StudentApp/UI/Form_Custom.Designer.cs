@@ -256,7 +256,7 @@
             // View_All
             // 
             this.View_All.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.View_All.Location = new System.Drawing.Point(22, 25);
+            this.View_All.Location = new System.Drawing.Point(19, 25);
             this.View_All.Name = "View_All";
             this.View_All.RowTemplate.Height = 27;
             this.View_All.Size = new System.Drawing.Size(1065, 254);

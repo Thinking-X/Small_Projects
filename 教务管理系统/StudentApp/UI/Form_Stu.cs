@@ -35,6 +35,8 @@ namespace StudentApp
         {
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+            Update.Enabled = false;
+            Delete.Enabled = false;
 
             Dictionary<string, string> Dic = new Dictionary<string, string>();
             Dic.Add("学号", "Sid");
@@ -102,6 +104,8 @@ namespace StudentApp
             count = StuDao.GainSumline();
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+            Update.Enabled = true;
+            Delete.Enabled = true;
             return;
         }
         private void FirstPage_Click(object sender, EventArgs e)
@@ -116,6 +120,8 @@ namespace StudentApp
                 ChangeColumnNames(true, "");
                 UpPage.Enabled = false;
                 DownPage.Enabled = true;
+                Update.Enabled = true;
+                Delete.Enabled = true;
                 count = StuDao.GainSumline();
             }
             else
@@ -217,13 +223,14 @@ namespace StudentApp
             {
                 Sid.ReadOnly = false;
                 StuDao.Updata_Stu(stu);
-                Clean();              
+                Clean();
                 Insert.Text = "注册";
             }
             return;
         }
         private void Update_Click(object sender, EventArgs e)
         {
+            Clean();
             if (View_Stu.SelectedRows.Count == 1)
             {
                 int index = View_Stu.CurrentRow.Index;
@@ -247,12 +254,15 @@ namespace StudentApp
                 radio_X.Checked = true;
             }
             ClassName.Text = View_Stu.SelectedRows[0].Cells[3].Value.ToString();
-            AScores.Text = View_Stu.SelectedRows[0].Cells[4].Value.ToString();
-            Birthdate.Text = View_Stu.SelectedRows[0].Cells[5].Value.ToString();
+            Birthdate.Text = View_Stu.SelectedRows[0].Cells[4].Value.ToString();
+            AScores.Text = View_Stu.SelectedRows[0].Cells[5].Value.ToString();
             Sid.ReadOnly = true;
             return;
         }
-        private void Prop_Click(object sender, EventArgs e){ }
+        private void Prop_Click(object sender, EventArgs e)
+        {
+            Val.Text = "";
+        }
         private void Select_Click(object sender, EventArgs e)
         {
             View_Stu.AutoGenerateColumns = true;
@@ -322,11 +332,15 @@ namespace StudentApp
                 }
                 View_Stu.DataSource = StuDao.Select_Stu2(prop, val);
                 ChangeColumnNames(true, "");
+                Update.Enabled = true;
+                Delete.Enabled = true;
             }
             else
             {
                 View_Stu.DataSource = StuDao.Select_Stu1(prop)["T"];
                 ChangeColumnNames(false, Prop.Text.Trim());
+                Update.Enabled = false;
+                Delete.Enabled = false;
             }
             return;
         }
@@ -358,7 +372,7 @@ namespace StudentApp
                 MessageBox.Show("请点击索引，选择一行！");
                 return;
             }
-            StuDao.Delete_Stu(View_Stu.SelectedRows[0].Cells[0].Value.ToString());
+            StuDao.Delete_Stu(View_Stu.SelectedRows[0].Cells["Sid"].Value.ToString());
             return;
         }       
     }

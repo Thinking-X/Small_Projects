@@ -83,7 +83,7 @@
             // 
             this.groupBox1.Controls.Add(this.radio_X);
             this.groupBox1.Controls.Add(this.radio_Y);
-            this.groupBox1.Location = new System.Drawing.Point(930, 102);
+            this.groupBox1.Location = new System.Drawing.Point(945, 102);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(129, 45);
             this.groupBox1.TabIndex = 53;
@@ -218,21 +218,21 @@
             // 
             this.Sname.Location = new System.Drawing.Point(931, 62);
             this.Sname.Name = "Sname";
-            this.Sname.Size = new System.Drawing.Size(128, 25);
+            this.Sname.Size = new System.Drawing.Size(158, 25);
             this.Sname.TabIndex = 47;
             // 
             // AScores
             // 
             this.AScores.Location = new System.Drawing.Point(931, 217);
             this.AScores.Name = "AScores";
-            this.AScores.Size = new System.Drawing.Size(128, 25);
+            this.AScores.Size = new System.Drawing.Size(158, 25);
             this.AScores.TabIndex = 45;
             // 
             // Sid
             // 
             this.Sid.Location = new System.Drawing.Point(931, 18);
             this.Sid.Name = "Sid";
-            this.Sid.Size = new System.Drawing.Size(128, 25);
+            this.Sid.Size = new System.Drawing.Size(158, 25);
             this.Sid.TabIndex = 44;
             // 
             // label6
@@ -313,7 +313,7 @@
             // 
             this.ClassName.Location = new System.Drawing.Point(931, 167);
             this.ClassName.Name = "ClassName";
-            this.ClassName.Size = new System.Drawing.Size(128, 25);
+            this.ClassName.Size = new System.Drawing.Size(158, 25);
             this.ClassName.TabIndex = 46;
             // 
             // View_Stu

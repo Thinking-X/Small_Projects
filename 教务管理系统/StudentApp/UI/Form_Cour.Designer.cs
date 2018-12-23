@@ -95,28 +95,28 @@
             // 
             this.No.Location = new System.Drawing.Point(796, 59);
             this.No.Name = "No";
-            this.No.Size = new System.Drawing.Size(138, 25);
+            this.No.Size = new System.Drawing.Size(164, 25);
             this.No.TabIndex = 3;
             // 
             // Cid
             // 
             this.Cid.Location = new System.Drawing.Point(796, 121);
             this.Cid.Name = "Cid";
-            this.Cid.Size = new System.Drawing.Size(138, 25);
+            this.Cid.Size = new System.Drawing.Size(164, 25);
             this.Cid.TabIndex = 4;
             // 
             // Cname
             // 
             this.Cname.Location = new System.Drawing.Point(796, 187);
             this.Cname.Name = "Cname";
-            this.Cname.Size = new System.Drawing.Size(138, 25);
+            this.Cname.Size = new System.Drawing.Size(164, 25);
             this.Cname.TabIndex = 5;
             // 
             // Credit
             // 
             this.Credit.Location = new System.Drawing.Point(796, 253);
             this.Credit.Name = "Credit";
-            this.Credit.Size = new System.Drawing.Size(138, 25);
+            this.Credit.Size = new System.Drawing.Size(164, 25);
             this.Credit.TabIndex = 6;
             // 
             // label1

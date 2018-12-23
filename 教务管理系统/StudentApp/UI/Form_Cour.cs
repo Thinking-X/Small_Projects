@@ -32,6 +32,8 @@ namespace StudentApp.UI
         {
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+            Update.Enabled = false;
+            Delete.Enabled = false;
 
             Dictionary<string, string> Dic = new Dictionary<string, string>();
             Dic.Add("编号", "No");
@@ -90,6 +92,9 @@ namespace StudentApp.UI
             count = CourDao.GainSumline();
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+            Update.Enabled = true;
+            Delete.Enabled = true;
+
             return;
         }
         private void FirstPage_Click(object sender, EventArgs e)
@@ -104,6 +109,8 @@ namespace StudentApp.UI
                 ChangeColumnNames(true, "");
                 UpPage.Enabled = false;
                 DownPage.Enabled = true;
+                Update.Enabled = true;
+                Delete.Enabled = true;
                 count = CourDao.GainSumline();
             }
             else
@@ -199,6 +206,7 @@ namespace StudentApp.UI
         }
         private void Update_Click(object sender, EventArgs e)
         {
+            Clean();
             if (View_Cour.SelectedRows.Count == 1)
             {
                 int index = View_Cour.CurrentRow.Index;
@@ -217,7 +225,10 @@ namespace StudentApp.UI
             Cid.ReadOnly = true;
             return;
         }
-        private void Prop_Click(object sender, EventArgs e){ }
+        private void Prop_Click(object sender, EventArgs e)
+        {
+            Val.Text = "";
+        }
         private void Select_Click(object sender, EventArgs e)
         {
             View_Cour.AutoGenerateColumns = true;
@@ -242,11 +253,15 @@ namespace StudentApp.UI
                 }
                 View_Cour.DataSource = CourDao.Select_Cour2(prop, val);
                 ChangeColumnNames(true, "");
+                Update.Enabled = true;
+                Delete.Enabled = true;
             }
             else
             {
                 View_Cour.DataSource = CourDao.Select_Cour1(prop)["T"];
                 ChangeColumnNames(false, Prop.Text.Trim());
+                Update.Enabled = false;
+                Delete.Enabled = false;
             }
             return;
         }
@@ -278,7 +293,7 @@ namespace StudentApp.UI
                 MessageBox.Show("请点击索引，选择一行！");
                 return;
             }
-            CourDao.Delete_Cour(View_Cour.SelectedRows[0].Cells[0].Value.ToString());
+            CourDao.Delete_Cour(View_Cour.SelectedRows[0].Cells["Cid"].Value.ToString());
             return;
         }      
     }

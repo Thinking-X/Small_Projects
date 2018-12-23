@@ -12,3 +12,17 @@ G:\repos\StudentApp\StudentApp\obj\Debug\StudentApp.UI.Form_Cour.resources
 G:\repos\StudentApp\StudentApp\obj\Debug\StudentApp.Form_Menu.resources
 G:\repos\StudentApp\StudentApp\obj\Debug\StudentApp.Form_SC.resources
 G:\repos\StudentApp\StudentApp\obj\Debug\StudentApp.UI.Form_Custom.resources
+G:\git\Small_Projects\教务管理系统\StudentApp\bin\Debug\StudentApp.exe.config
+G:\git\Small_Projects\教务管理系统\StudentApp\bin\Debug\StudentApp.exe
+G:\git\Small_Projects\教务管理系统\StudentApp\bin\Debug\StudentApp.pdb
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.csprojResolveAssemblyReference.cache
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.UI.Form_Cour.resources
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.UI.Form_Custom.resources
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.Form_Menu.resources
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.Form_SC.resources
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.Form_Stu.resources
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.Properties.Resources.resources
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.csproj.GenerateResource.cache
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.csproj.CoreCompileInputs.cache
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.exe
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.pdb

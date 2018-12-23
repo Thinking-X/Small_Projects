@@ -29,6 +29,8 @@ namespace StudentApp
         {
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+            Update.Enabled = false;
+            Delete.Enabled = false;
 
             Dictionary<string, string> Dic = new Dictionary<string, string>();
             Dic.Add("学号", "Sid");
@@ -88,6 +90,8 @@ namespace StudentApp
             count = scDao.GainSumline();
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+            Update.Enabled = true;
+            Delete.Enabled = true;
             return;
         }
         private void FirstPage_Click(object sender, EventArgs e)
@@ -102,6 +106,8 @@ namespace StudentApp
                 ChangeColumnNames(true, "");
                 UpPage.Enabled = false;
                 DownPage.Enabled = true;
+                Update.Enabled = true;
+                Delete.Enabled = true;
                 count = scDao.GainSumline();
             }
             else
@@ -191,6 +197,7 @@ namespace StudentApp
         }
         private void Update_Click(object sender, EventArgs e)
         {
+            Clean();
             if (View_SC.SelectedRows.Count == 1)
             {
                 int index = View_SC.CurrentRow.Index;
@@ -209,7 +216,10 @@ namespace StudentApp
             Cid.ReadOnly = true;
             return;
         }       
-        private void Prop_Click(object sender, EventArgs e){ }
+        private void Prop_Click(object sender, EventArgs e)
+        {
+            Val.Text = "";
+        }
         private void Select_Click(object sender, EventArgs e)
         {
             View_SC.AutoGenerateColumns = true;
@@ -234,11 +244,15 @@ namespace StudentApp
                 }
                 View_SC.DataSource = scDao.Select_SC2(prop, val);
                 ChangeColumnNames(true, "");
+                Update.Enabled = true;
+                Delete.Enabled = true;
             }
             else
             {
                 View_SC.DataSource = scDao.Select_SC1(prop)["T"];
                 ChangeColumnNames(false, Prop.Text.Trim());
+                Update.Enabled = false;
+                Delete.Enabled = false;
             }
             return;
         }
@@ -270,7 +284,7 @@ namespace StudentApp
                 MessageBox.Show("请点击索引，选择一行！");
                 return;
             }
-            scDao.Delete_SC(View_SC.SelectedRows[0].Cells[0].Value.ToString(), View_SC.SelectedRows[0].Cells[1].Value.ToString());
+            scDao.Delete_SC(View_SC.SelectedRows[0].Cells["Sid"].Value.ToString(), View_SC.SelectedRows[0].Cells["Cid"].Value.ToString());
             return;
         }
     }

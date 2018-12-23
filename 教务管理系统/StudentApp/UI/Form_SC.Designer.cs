@@ -61,16 +61,16 @@
             // 
             // Scores
             // 
-            this.Scores.Location = new System.Drawing.Point(734, 166);
+            this.Scores.Location = new System.Drawing.Point(743, 218);
             this.Scores.Name = "Scores";
-            this.Scores.Size = new System.Drawing.Size(131, 25);
+            this.Scores.Size = new System.Drawing.Size(177, 25);
             this.Scores.TabIndex = 23;
             // 
             // Sid
             // 
-            this.Sid.Location = new System.Drawing.Point(734, 48);
+            this.Sid.Location = new System.Drawing.Point(743, 51);
             this.Sid.Name = "Sid";
-            this.Sid.Size = new System.Drawing.Size(131, 25);
+            this.Sid.Size = new System.Drawing.Size(177, 25);
             this.Sid.TabIndex = 21;
             // 
             // Val
@@ -111,9 +111,9 @@
             // 
             // Cid
             // 
-            this.Cid.Location = new System.Drawing.Point(734, 108);
+            this.Cid.Location = new System.Drawing.Point(743, 129);
             this.Cid.Name = "Cid";
-            this.Cid.Size = new System.Drawing.Size(131, 25);
+            this.Cid.Size = new System.Drawing.Size(177, 25);
             this.Cid.TabIndex = 22;
             // 
             // groupBox1
@@ -180,7 +180,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(670, 166);
+            this.label3.Location = new System.Drawing.Point(670, 228);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 15);
             this.label3.TabIndex = 19;
@@ -189,7 +189,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(670, 51);
+            this.label1.Location = new System.Drawing.Point(670, 54);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 15);
             this.label1.TabIndex = 17;
@@ -198,7 +198,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(670, 108);
+            this.label2.Location = new System.Drawing.Point(670, 132);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 15);
             this.label2.TabIndex = 18;
@@ -206,9 +206,9 @@
             // 
             // Insert
             // 
-            this.Insert.Location = new System.Drawing.Point(690, 302);
+            this.Insert.Location = new System.Drawing.Point(715, 304);
             this.Insert.Name = "Insert";
-            this.Insert.Size = new System.Drawing.Size(135, 47);
+            this.Insert.Size = new System.Drawing.Size(139, 41);
             this.Insert.TabIndex = 16;
             this.Insert.Text = "添加";
             this.Insert.UseVisualStyleBackColor = true;
