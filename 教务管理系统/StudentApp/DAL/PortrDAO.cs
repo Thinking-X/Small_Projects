@@ -18,7 +18,7 @@ namespace StudentApp.DAL
         }
         SqlConnection conn;
         SqlTransaction tran = null;
-        public int Insert_Portr(Portrait Portr)
+        public bool Insert_Portr(Portrait Portr)
         {
             string insert = "insert into Portrait values(@ID,@imgfile)";
             SqlCommand CMD = new SqlCommand(insert,conn,tran);
@@ -30,7 +30,11 @@ namespace StudentApp.DAL
             //CMD.Parameters.Add(par);
             int result = CMD.ExecuteNonQuery();
             conn.Close();
-            return result;
+            if (result == 1)
+            {
+                return true;
+            }
+            return false;
         }
         public List<string> SelectAllSID()
         {

@@ -59,19 +59,17 @@ namespace StudentApp.UI
             pictureBox.Image = null;
             return;
         }
-        private void Insert_Click(object sender, EventArgs e){}
         private void Update_Click(object sender, EventArgs e)
         {
-            Portr.Stu_ID = labelSID.Text.Trim();
             OpenFileDialog file = new OpenFileDialog();
             file.InitialDirectory = ".";
             file.Filter = "所有文件(*.*)|*.*";
             file.ShowDialog();
+            pathName = file.FileName;
             if (string.IsNullOrWhiteSpace(pathName))
             {
                 try
-                {
-                    pathName = file.FileName;
+                { 
                     Image img = Image.FromFile(pathName);
                 }
                 catch
@@ -89,6 +87,7 @@ namespace StudentApp.UI
             Byte[] image = new byte[fs.Length];
             fs.Read(image, 0, Convert.ToInt32(fs.Length));
             fs.Close();
+            Portr.Stu_ID = labelSID.Text.Trim();
             Portr.Stu_Image = image;
             if(portrDAO.Update_Portr(Portr))
             {
@@ -176,13 +175,19 @@ namespace StudentApp.UI
         private string Sid;//datagridview中的某个SID
         private void View_SID_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right && e.RowIndex > -1 && e.RowIndex > -1)
+            try
             {
-                View_SID.ClearSelection();
-                View_SID.Rows[e.RowIndex].Selected = true;
-                Sid = View_SID.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                if (e.Button == MouseButtons.Right && e.RowIndex > -1 && e.RowIndex > -1)
+                {
+                    View_SID.ClearSelection();
+                    View_SID.Rows[e.RowIndex].Selected = true;
+                    Sid = View_SID.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                }
             }
-            return;
+            catch
+            {
+                return;
+            }
         }
         private string pathName = string.Empty;
         private void Insert_Portr(string sid)
@@ -192,11 +197,11 @@ namespace StudentApp.UI
             file.InitialDirectory = ".";
             file.Filter = "所有文件(*.*)|*.*";
             file.ShowDialog();
+            pathName = file.FileName;
             if (string.IsNullOrWhiteSpace(pathName))
             {
                 try
                 {
-                    pathName = file.FileName;
                     Image img = Image.FromFile(pathName);
                 }
                 catch
@@ -216,7 +221,7 @@ namespace StudentApp.UI
             fs.Close();
             Portr.Stu_Image = image;
             Portr.Stu_ID = sid;
-            if(portrDAO.Insert_Portr(Portr) == 1)
+            if(portrDAO.Insert_Portr(Portr))
             {
                 MessageBox.Show("添加成功！");
                 pictureBox.Load(pathName);
@@ -289,6 +294,7 @@ namespace StudentApp.UI
         private void btn_Down_Click(object sender, EventArgs e)
         {
             i++;
+            count = portrDAO.GainSumline();
             if (count + 1 == i)
             {
                 i--;
