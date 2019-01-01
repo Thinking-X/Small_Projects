@@ -15,6 +15,8 @@ namespace StudentApp
         public Form_Menu()
         {
             InitializeComponent();
+            this.MaximizeBox = false;//禁用最大化按钮
+            this.MinimizeBox = false;//禁用最小化按钮
         }       
         public int Result = 0;
         private void Student_Click(object sender, EventArgs e)
@@ -38,6 +40,12 @@ namespace StudentApp
         private void Custom_Click(object sender, EventArgs e)
         {
             Result = 4;
+            this.Dispose();
+            return;
+        }
+        private void Portrait_Click(object sender, EventArgs e)
+        {
+            Result = 5;
             this.Dispose();
             return;
         }

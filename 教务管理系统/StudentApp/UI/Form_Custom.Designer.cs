@@ -297,7 +297,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form_Custom";
-            this.Text = "Form_Custom";
+            this.Text = "自定义查询窗口";
             this.panelAll.ResumeLayout(false);
             this.panelAll.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.View_All)).EndInit();

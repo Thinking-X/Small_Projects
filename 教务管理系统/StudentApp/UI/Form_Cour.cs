@@ -17,6 +17,8 @@ namespace StudentApp.UI
         public Form_Cour()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
         private void Clean()
         {
@@ -192,14 +194,28 @@ namespace StudentApp.UI
             }          
             if (Insert.Text.Equals("添加"))
             {
-                CourDao.Insert_Cour(cour);
-                Clean();
+                if(CourDao.Insert_Cour(cour))
+                {
+                    MessageBox.Show("成功插入一行记录！");
+                    Clean();
+                }
+                else
+                {
+                    MessageBox.Show("执行出错，插入失败！");
+                }
             }
             else
             {
                 Cid.ReadOnly = false;
-                CourDao.Updata_Cour(cour);
-                Clean();
+                if(CourDao.Update_Cour(cour))
+                {
+                    MessageBox.Show("成功更改一行记录！");
+                    Clean();
+                }
+                else
+                {
+                    MessageBox.Show("执行出错，更改失败！");
+                }
                 Insert.Text = "添加";
             }
             return;
@@ -228,29 +244,42 @@ namespace StudentApp.UI
         private void Prop_Click(object sender, EventArgs e)
         {
             Val.Text = "";
+            valText1.Text = "";
+            valText2.Text = "";
+            return;
         }
         private void Select_Click(object sender, EventArgs e)
         {
             View_Cour.AutoGenerateColumns = true;
             string prop = Prop.SelectedValue.ToString().Trim();
+            if (prop == "Credit")
+            {
+                string Scor1 = valText1.Text.ToString().Trim();
+                string Scor2 = valText2.Text.ToString().Trim();
+                if ((Scor1 == "") && (Scor2 == ""))
+                {
+                    View_Cour.DataSource = CourDao.Select_Cour1(prop);
+                    ChangeColumnNames(false, Prop.Text.Trim());
+                    Update.Enabled = false;
+                    Delete.Enabled = false;
+                    return;
+                }
+                if ((Scor1 != "") && (Scor2 != ""))
+                {
+                    View_Cour.DataSource = CourDao.Select_Cour3(prop, Scor1, Scor2);
+                    ChangeColumnNames(true, "");
+                    Update.Enabled = true;
+                    Delete.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("请输入合法的范围！");
+                }
+                return;
+            }
             string val = Val.Text.ToString().Trim();
             if(val != "")
             {
-                if (prop == "Credit")
-                {
-                    string Scor1 = valText1.Text.ToString().Trim();
-                    string Scor2 = valText2.Text.ToString().Trim();
-                    if ((Scor1 != "") && (Scor2 != ""))
-                    {
-                        View_Cour.DataSource = CourDao.Select_Cour3(prop, Scor1, Scor2);
-                        ChangeColumnNames(true, "");
-                    }
-                    else
-                    {
-                        MessageBox.Show("请输入合法的范围！");
-                    }
-                    return;
-                }
                 View_Cour.DataSource = CourDao.Select_Cour2(prop, val);
                 ChangeColumnNames(true, "");
                 Update.Enabled = true;
@@ -258,7 +287,7 @@ namespace StudentApp.UI
             }
             else
             {
-                View_Cour.DataSource = CourDao.Select_Cour1(prop)["T"];
+                View_Cour.DataSource = CourDao.Select_Cour1(prop);
                 ChangeColumnNames(false, Prop.Text.Trim());
                 Update.Enabled = false;
                 Delete.Enabled = false;
@@ -293,7 +322,19 @@ namespace StudentApp.UI
                 MessageBox.Show("请点击索引，选择一行！");
                 return;
             }
-            CourDao.Delete_Cour(View_Cour.SelectedRows[0].Cells["Cid"].Value.ToString());
+            DialogResult dr = MessageBox.Show("确定要删除吗?", "提示：", MessageBoxButtons.OKCancel);
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+            if (CourDao.Delete_Cour(View_Cour.SelectedRows[0].Cells["Cid"].Value.ToString()))
+            {
+                MessageBox.Show("成功删除一行记录！");
+            }
+            else
+            {
+                MessageBox.Show("执行出错，删除失败！");
+            }
             return;
         }      
     }

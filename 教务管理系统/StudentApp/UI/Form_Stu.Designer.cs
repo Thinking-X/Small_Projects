@@ -83,7 +83,7 @@
             // 
             this.groupBox1.Controls.Add(this.radio_X);
             this.groupBox1.Controls.Add(this.radio_Y);
-            this.groupBox1.Location = new System.Drawing.Point(945, 102);
+            this.groupBox1.Location = new System.Drawing.Point(928, 109);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(129, 45);
             this.groupBox1.TabIndex = 53;
@@ -102,14 +102,14 @@
             // 
             // Birthdate
             // 
-            this.Birthdate.Location = new System.Drawing.Point(931, 268);
+            this.Birthdate.Location = new System.Drawing.Point(914, 273);
             this.Birthdate.Name = "Birthdate";
             this.Birthdate.Size = new System.Drawing.Size(158, 25);
             this.Birthdate.TabIndex = 52;
             // 
             // Delete
             // 
-            this.Delete.Location = new System.Drawing.Point(62, 178);
+            this.Delete.Location = new System.Drawing.Point(62, 183);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(210, 33);
             this.Delete.TabIndex = 24;
@@ -120,7 +120,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 84);
+            this.label8.Location = new System.Drawing.Point(20, 89);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(83, 15);
             this.label8.TabIndex = 32;
@@ -129,7 +129,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 37);
+            this.label7.Location = new System.Drawing.Point(6, 42);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(112, 15);
             this.label7.TabIndex = 31;
@@ -137,7 +137,7 @@
             // 
             // Val
             // 
-            this.Val.Location = new System.Drawing.Point(126, 77);
+            this.Val.Location = new System.Drawing.Point(126, 82);
             this.Val.Name = "Val";
             this.Val.Size = new System.Drawing.Size(167, 25);
             this.Val.TabIndex = 30;
@@ -146,7 +146,7 @@
             // 
             this.Prop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Prop.FormattingEnabled = true;
-            this.Prop.Location = new System.Drawing.Point(126, 33);
+            this.Prop.Location = new System.Drawing.Point(126, 38);
             this.Prop.Name = "Prop";
             this.Prop.Size = new System.Drawing.Size(167, 23);
             this.Prop.TabIndex = 29;
@@ -164,7 +164,7 @@
             this.SelectBox.Controls.Add(this.Val);
             this.SelectBox.Controls.Add(this.Prop);
             this.SelectBox.Controls.Add(this.Select);
-            this.SelectBox.Location = new System.Drawing.Point(441, 337);
+            this.SelectBox.Location = new System.Drawing.Point(441, 342);
             this.SelectBox.Name = "SelectBox";
             this.SelectBox.Size = new System.Drawing.Size(344, 238);
             this.SelectBox.TabIndex = 49;
@@ -173,7 +173,7 @@
             // 
             // valText2
             // 
-            this.valText2.Location = new System.Drawing.Point(245, 77);
+            this.valText2.Location = new System.Drawing.Point(245, 82);
             this.valText2.Name = "valText2";
             this.valText2.Size = new System.Drawing.Size(48, 25);
             this.valText2.TabIndex = 57;
@@ -181,7 +181,7 @@
             // toLabel
             // 
             this.toLabel.AutoSize = true;
-            this.toLabel.Location = new System.Drawing.Point(202, 83);
+            this.toLabel.Location = new System.Drawing.Point(202, 88);
             this.toLabel.Name = "toLabel";
             this.toLabel.Size = new System.Drawing.Size(15, 15);
             this.toLabel.TabIndex = 58;
@@ -189,14 +189,14 @@
             // 
             // valText1
             // 
-            this.valText1.Location = new System.Drawing.Point(126, 77);
+            this.valText1.Location = new System.Drawing.Point(126, 82);
             this.valText1.Name = "valText1";
             this.valText1.Size = new System.Drawing.Size(52, 25);
             this.valText1.TabIndex = 56;
             // 
             // Select
             // 
-            this.Select.Location = new System.Drawing.Point(62, 125);
+            this.Select.Location = new System.Drawing.Point(62, 130);
             this.Select.Name = "Select";
             this.Select.Size = new System.Drawing.Size(210, 33);
             this.Select.TabIndex = 3;
@@ -206,9 +206,9 @@
             // 
             // Update
             // 
-            this.Update.Location = new System.Drawing.Point(272, 313);
+            this.Update.Location = new System.Drawing.Point(198, 318);
             this.Update.Name = "Update";
-            this.Update.Size = new System.Drawing.Size(121, 44);
+            this.Update.Size = new System.Drawing.Size(94, 44);
             this.Update.TabIndex = 48;
             this.Update.Text = "更改信息";
             this.Update.UseVisualStyleBackColor = true;
@@ -216,21 +216,21 @@
             // 
             // Sname
             // 
-            this.Sname.Location = new System.Drawing.Point(931, 62);
+            this.Sname.Location = new System.Drawing.Point(916, 78);
             this.Sname.Name = "Sname";
             this.Sname.Size = new System.Drawing.Size(158, 25);
             this.Sname.TabIndex = 47;
             // 
             // AScores
             // 
-            this.AScores.Location = new System.Drawing.Point(931, 217);
+            this.AScores.Location = new System.Drawing.Point(914, 222);
             this.AScores.Name = "AScores";
             this.AScores.Size = new System.Drawing.Size(158, 25);
             this.AScores.TabIndex = 45;
             // 
             // Sid
             // 
-            this.Sid.Location = new System.Drawing.Point(931, 18);
+            this.Sid.Location = new System.Drawing.Point(916, 39);
             this.Sid.Name = "Sid";
             this.Sid.Size = new System.Drawing.Size(158, 25);
             this.Sid.TabIndex = 44;
@@ -238,7 +238,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(879, 220);
+            this.label6.Location = new System.Drawing.Point(862, 225);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 15);
             this.label6.TabIndex = 43;
@@ -247,7 +247,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(879, 271);
+            this.label4.Location = new System.Drawing.Point(862, 276);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 15);
             this.label4.TabIndex = 41;
@@ -256,7 +256,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(879, 170);
+            this.label3.Location = new System.Drawing.Point(862, 175);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 15);
             this.label3.TabIndex = 40;
@@ -265,7 +265,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(879, 65);
+            this.label2.Location = new System.Drawing.Point(862, 81);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 15);
             this.label2.TabIndex = 39;
@@ -274,7 +274,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(879, 18);
+            this.label1.Location = new System.Drawing.Point(862, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 15);
             this.label1.TabIndex = 38;
@@ -282,7 +282,7 @@
             // 
             // Insert
             // 
-            this.Insert.Location = new System.Drawing.Point(882, 334);
+            this.Insert.Location = new System.Drawing.Point(865, 339);
             this.Insert.Name = "Insert";
             this.Insert.Size = new System.Drawing.Size(207, 45);
             this.Insert.TabIndex = 37;
@@ -293,7 +293,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(879, 125);
+            this.label5.Location = new System.Drawing.Point(862, 130);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 15);
             this.label5.TabIndex = 42;
@@ -301,9 +301,9 @@
             // 
             // Display
             // 
-            this.Display.Location = new System.Drawing.Point(59, 313);
+            this.Display.Location = new System.Drawing.Point(35, 318);
             this.Display.Name = "Display";
-            this.Display.Size = new System.Drawing.Size(140, 44);
+            this.Display.Size = new System.Drawing.Size(123, 44);
             this.Display.TabIndex = 35;
             this.Display.Text = "显示全部学生";
             this.Display.UseVisualStyleBackColor = true;
@@ -311,7 +311,7 @@
             // 
             // ClassName
             // 
-            this.ClassName.Location = new System.Drawing.Point(931, 167);
+            this.ClassName.Location = new System.Drawing.Point(914, 172);
             this.ClassName.Name = "ClassName";
             this.ClassName.Size = new System.Drawing.Size(158, 25);
             this.ClassName.TabIndex = 46;
@@ -319,10 +319,10 @@
             // View_Stu
             // 
             this.View_Stu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.View_Stu.Location = new System.Drawing.Point(12, 12);
+            this.View_Stu.Location = new System.Drawing.Point(33, 36);
             this.View_Stu.Name = "View_Stu";
             this.View_Stu.RowTemplate.Height = 27;
-            this.View_Stu.Size = new System.Drawing.Size(846, 285);
+            this.View_Stu.Size = new System.Drawing.Size(800, 262);
             this.View_Stu.TabIndex = 34;
             this.View_Stu.Tag = "550:302:84:60:23";
             this.View_Stu.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.View_Stu_RowPostPaint);
@@ -334,7 +334,7 @@
             this.groupBox2.Controls.Add(this.UpPage);
             this.groupBox2.Controls.Add(this.FirstPage);
             this.groupBox2.Controls.Add(this.LineNum);
-            this.groupBox2.Location = new System.Drawing.Point(35, 371);
+            this.groupBox2.Location = new System.Drawing.Point(35, 376);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(257, 204);
             this.groupBox2.TabIndex = 54;
@@ -344,7 +344,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 25);
+            this.label9.Location = new System.Drawing.Point(25, 34);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(112, 15);
             this.label9.TabIndex = 55;
@@ -352,9 +352,9 @@
             // 
             // DownPage
             // 
-            this.DownPage.Location = new System.Drawing.Point(48, 150);
+            this.DownPage.Location = new System.Drawing.Point(29, 155);
             this.DownPage.Name = "DownPage";
-            this.DownPage.Size = new System.Drawing.Size(155, 33);
+            this.DownPage.Size = new System.Drawing.Size(179, 33);
             this.DownPage.TabIndex = 3;
             this.DownPage.Text = "下一页";
             this.DownPage.UseVisualStyleBackColor = true;
@@ -362,9 +362,9 @@
             // 
             // UpPage
             // 
-            this.UpPage.Location = new System.Drawing.Point(48, 107);
+            this.UpPage.Location = new System.Drawing.Point(29, 110);
             this.UpPage.Name = "UpPage";
-            this.UpPage.Size = new System.Drawing.Size(155, 31);
+            this.UpPage.Size = new System.Drawing.Size(179, 33);
             this.UpPage.TabIndex = 2;
             this.UpPage.Text = "上一页";
             this.UpPage.UseVisualStyleBackColor = true;
@@ -372,9 +372,9 @@
             // 
             // FirstPage
             // 
-            this.FirstPage.Location = new System.Drawing.Point(48, 63);
+            this.FirstPage.Location = new System.Drawing.Point(29, 64);
             this.FirstPage.Name = "FirstPage";
-            this.FirstPage.Size = new System.Drawing.Size(155, 33);
+            this.FirstPage.Size = new System.Drawing.Size(179, 33);
             this.FirstPage.TabIndex = 1;
             this.FirstPage.Text = "显示第一页";
             this.FirstPage.UseVisualStyleBackColor = true;
@@ -382,9 +382,9 @@
             // 
             // LineNum
             // 
-            this.LineNum.Location = new System.Drawing.Point(124, 22);
+            this.LineNum.Location = new System.Drawing.Point(144, 27);
             this.LineNum.Name = "LineNum";
-            this.LineNum.Size = new System.Drawing.Size(100, 25);
+            this.LineNum.Size = new System.Drawing.Size(64, 25);
             this.LineNum.TabIndex = 0;
             // 
             // Form_Stu
@@ -412,7 +412,7 @@
             this.Controls.Add(this.View_Stu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form_Stu";
-            this.Text = "Form_Stu";
+            this.Text = "学生窗口";
             this.Load += new System.EventHandler(this.Form_Stu_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

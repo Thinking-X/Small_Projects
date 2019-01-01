@@ -63,85 +63,74 @@ namespace StudentApp.DAL
             con.Close();
             return list;
         }
-        public void Insert_SC(SC sc)
+        public bool Insert_SC(SC sc)
         {
             string insert = string.Format("insert into SC values ('{0}', '{1}', {2})", sc.Sid, sc.Cid, sc.Scores);
             SqlCommand cmd = new SqlCommand(insert, con, tran);
             con.Open();
+            bool result = false;
             try
             {
                 if (cmd.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("成功插入一行记录！");
-                }
-                else
-                {
-                    MessageBox.Show("插入失败！");
+                    result = true;
                 }
             }
             catch
             {
-                MessageBox.Show("执行出错，插入失败！");
+                result = false;
             }
             con.Close();
-            return;
+            return result;
         }
-        public void Delete_SC(string sid,string cid)
+        public bool Delete_SC(string sid,string cid)
         {
             string delete = String.Format("delete sc where sid = '{0}' and  cid='{1}'", sid, cid);
             SqlCommand cmd = new SqlCommand(delete, con, tran);
             con.Open();
+            bool result = false;
             try
             {
                 if (cmd.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("成功删除一行记录！");
-                }
-                else
-                {
-                    MessageBox.Show("删除失败！");
+                    result = true;
                 }
             }
             catch
             {
-                MessageBox.Show("执行出错，删除失败！");
+                result = false;
             }
             con.Close();
-            return;
+            return result;
         }
-        public void Updata_SC(SC sc)
+        public bool Update_SC(SC sc)
         {
             string update = string.Format("update sc set scores = '{0}' where sid = '{1}' and cid = '{2}'", sc.Scores, sc.Sid, sc.Cid);
             SqlCommand cmd = new SqlCommand(update, con, tran);
             con.Open();
+            bool result = false;
             try
             {
                 if (cmd.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("成功更改一行记录！");
-                }
-                else
-                {
-                    MessageBox.Show("未做更改！");
+                    result = true;
                 }
             }
             catch
             {
-                MessageBox.Show("执行出错，更改失败！");
+                result = false;
             }
             con.Close();
-            return;
+            return result;
         }
-        public DataTableCollection Select_SC1(string Prop)
+        public DataTable Select_SC1(string Prop)
         {
             string select = "select " + Prop + " from sc";
             SqlCommand cmd = new SqlCommand(select, con, tran);
-            con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataSet Data = new DataSet();
-            adapter.Fill(Data, "T");
-            con.Close();
-            return Data.Tables;
+            DataTable Data = new DataTable();
+            adapter.Fill(Data);
+            return Data;
         }
         public List<SC> Select_SC2(string Prop, string Val)
         {

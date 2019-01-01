@@ -17,6 +17,8 @@ namespace StudentApp
         public Form_SC()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
         private void Clean()
         {
@@ -46,10 +48,7 @@ namespace StudentApp
             toLabel.Visible = false;
             return;
         }
-        int i;//表示第几页
-        int count;//表示所查询的表一共几行
         SCDAO scDao = new SCDAO();
-
         private void View_SC_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             var grid = sender as DataGridView;
@@ -82,6 +81,8 @@ namespace StudentApp
             }
             return;
         }
+        int i;//表示第几页
+        int count;//表示所查询的表一共几行
         private void Display_Click(object sender, EventArgs e)
         {
             View_SC.AutoGenerateColumns = true;
@@ -182,15 +183,29 @@ namespace StudentApp
             }           
             if (Insert.Text.Equals("添加"))
             {
-                scDao.Insert_SC(sc);
-                Clean();
+                if(scDao.Insert_SC(sc))
+                {
+                    MessageBox.Show("成功插入一行记录！");
+                    Clean();
+                }
+                else
+                {
+                    MessageBox.Show("执行出错，插入失败！");
+                }
             }
             else
             {
                 Sid.ReadOnly = false;
                 Cid.ReadOnly = false;
-                scDao.Updata_SC(sc);
-                Clean();               
+                if(scDao.Update_SC(sc))
+                {
+                    MessageBox.Show("成功更改一行记录！");
+                    Clean(); 
+                }
+                else
+                {
+                    MessageBox.Show("执行出错，更改失败！");
+                }
                 Insert.Text = "添加";
             }
             return;
@@ -219,29 +234,42 @@ namespace StudentApp
         private void Prop_Click(object sender, EventArgs e)
         {
             Val.Text = "";
+            valText1.Text = "";
+            valText2.Text = "";
+            return;
         }
         private void Select_Click(object sender, EventArgs e)
         {
             View_SC.AutoGenerateColumns = true;
             string prop = Prop.SelectedValue.ToString().Trim();
+            if (prop == "Scores")
+            {
+                string Scor1 = valText1.Text.ToString().Trim();
+                string Scor2 = valText2.Text.ToString().Trim();
+                if ((Scor1 == "") && (Scor2 == ""))
+                {
+                    View_SC.DataSource = scDao.Select_SC1(prop);
+                    ChangeColumnNames(false, Prop.Text.Trim());
+                    Update.Enabled = false;
+                    Delete.Enabled = false;
+                    return;
+                }
+                if ((Scor1 != "") && (Scor2 != ""))
+                {
+                    View_SC.DataSource = scDao.Select_SC3(prop, Scor1, Scor2);
+                    ChangeColumnNames(true, "");
+                    Update.Enabled = true;
+                    Delete.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("请输入合法的范围！");
+                }
+                return;
+            }
             string val = Val.Text.ToString().Trim();
             if( val != "")
             {
-                if (prop == "Scores")
-                {
-                    string Scor1 = valText1.Text.ToString().Trim();
-                    string Scor2 = valText2.Text.ToString().Trim();
-                    if ((Scor1 != "") && (Scor2 != ""))
-                    {
-                        View_SC.DataSource = scDao.Select_SC3(prop, Scor1, Scor2);
-                        ChangeColumnNames(true, "");
-                    }
-                    else
-                    {
-                        MessageBox.Show("请输入合法的范围！");
-                    }
-                    return;
-                }
                 View_SC.DataSource = scDao.Select_SC2(prop, val);
                 ChangeColumnNames(true, "");
                 Update.Enabled = true;
@@ -249,7 +277,7 @@ namespace StudentApp
             }
             else
             {
-                View_SC.DataSource = scDao.Select_SC1(prop)["T"];
+                View_SC.DataSource = scDao.Select_SC1(prop);
                 ChangeColumnNames(false, Prop.Text.Trim());
                 Update.Enabled = false;
                 Delete.Enabled = false;
@@ -284,7 +312,19 @@ namespace StudentApp
                 MessageBox.Show("请点击索引，选择一行！");
                 return;
             }
-            scDao.Delete_SC(View_SC.SelectedRows[0].Cells["Sid"].Value.ToString(), View_SC.SelectedRows[0].Cells["Cid"].Value.ToString());
+            DialogResult dr = MessageBox.Show("确定要删除吗?", "提示：", MessageBoxButtons.OKCancel);
+            if (dr == DialogResult.Cancel)
+            {
+                return;
+            }
+            if (scDao.Delete_SC(View_SC.SelectedRows[0].Cells["Sid"].Value.ToString(), View_SC.SelectedRows[0].Cells["Cid"].Value.ToString()))
+            {
+                MessageBox.Show("成功删除一行记录！");
+            }
+            else
+            {
+                MessageBox.Show("执行出错，删除失败！");
+            }
             return;
         }
     }

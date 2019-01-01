@@ -64,18 +64,18 @@
             // View_Cour
             // 
             this.View_Cour.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.View_Cour.Location = new System.Drawing.Point(26, 25);
+            this.View_Cour.Location = new System.Drawing.Point(57, 54);
             this.View_Cour.Name = "View_Cour";
             this.View_Cour.RowTemplate.Height = 27;
-            this.View_Cour.Size = new System.Drawing.Size(651, 253);
+            this.View_Cour.Size = new System.Drawing.Size(651, 219);
             this.View_Cour.TabIndex = 0;
             this.View_Cour.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.View_Cour_RowPostPaint);
             // 
             // Display
             // 
-            this.Display.Location = new System.Drawing.Point(26, 300);
+            this.Display.Location = new System.Drawing.Point(57, 295);
             this.Display.Name = "Display";
-            this.Display.Size = new System.Drawing.Size(132, 44);
+            this.Display.Size = new System.Drawing.Size(120, 44);
             this.Display.TabIndex = 1;
             this.Display.Text = "显示全部课程";
             this.Display.UseVisualStyleBackColor = true;
@@ -83,9 +83,9 @@
             // 
             // Update
             // 
-            this.Update.Location = new System.Drawing.Point(199, 300);
+            this.Update.Location = new System.Drawing.Point(213, 295);
             this.Update.Name = "Update";
-            this.Update.Size = new System.Drawing.Size(103, 44);
+            this.Update.Size = new System.Drawing.Size(120, 44);
             this.Update.TabIndex = 2;
             this.Update.Text = "更改信息";
             this.Update.UseVisualStyleBackColor = true;
@@ -93,28 +93,28 @@
             // 
             // No
             // 
-            this.No.Location = new System.Drawing.Point(796, 59);
+            this.No.Location = new System.Drawing.Point(827, 54);
             this.No.Name = "No";
             this.No.Size = new System.Drawing.Size(164, 25);
             this.No.TabIndex = 3;
             // 
             // Cid
             // 
-            this.Cid.Location = new System.Drawing.Point(796, 121);
+            this.Cid.Location = new System.Drawing.Point(827, 116);
             this.Cid.Name = "Cid";
             this.Cid.Size = new System.Drawing.Size(164, 25);
             this.Cid.TabIndex = 4;
             // 
             // Cname
             // 
-            this.Cname.Location = new System.Drawing.Point(796, 187);
+            this.Cname.Location = new System.Drawing.Point(827, 182);
             this.Cname.Name = "Cname";
             this.Cname.Size = new System.Drawing.Size(164, 25);
             this.Cname.TabIndex = 5;
             // 
             // Credit
             // 
-            this.Credit.Location = new System.Drawing.Point(796, 253);
+            this.Credit.Location = new System.Drawing.Point(827, 248);
             this.Credit.Name = "Credit";
             this.Credit.Size = new System.Drawing.Size(164, 25);
             this.Credit.TabIndex = 6;
@@ -122,7 +122,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(710, 62);
+            this.label1.Location = new System.Drawing.Point(741, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 15);
             this.label1.TabIndex = 7;
@@ -131,7 +131,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(710, 131);
+            this.label2.Location = new System.Drawing.Point(741, 126);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 15);
             this.label2.TabIndex = 8;
@@ -140,7 +140,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(710, 187);
+            this.label3.Location = new System.Drawing.Point(741, 182);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 15);
             this.label3.TabIndex = 9;
@@ -149,7 +149,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(715, 256);
+            this.label4.Location = new System.Drawing.Point(746, 251);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 15);
             this.label4.TabIndex = 10;
@@ -157,7 +157,7 @@
             // 
             // Insert
             // 
-            this.Insert.Location = new System.Drawing.Point(736, 330);
+            this.Insert.Location = new System.Drawing.Point(777, 325);
             this.Insert.Name = "Insert";
             this.Insert.Size = new System.Drawing.Size(163, 44);
             this.Insert.TabIndex = 11;
@@ -176,9 +176,9 @@
             this.groupBox1.Controls.Add(this.Val);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Location = new System.Drawing.Point(357, 341);
+            this.groupBox1.Location = new System.Drawing.Point(388, 354);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(320, 211);
+            this.groupBox1.Size = new System.Drawing.Size(320, 218);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "查找/删除";
@@ -186,7 +186,7 @@
             // toLabel
             // 
             this.toLabel.AutoSize = true;
-            this.toLabel.Location = new System.Drawing.Point(189, 68);
+            this.toLabel.Location = new System.Drawing.Point(218, 63);
             this.toLabel.Name = "toLabel";
             this.toLabel.Size = new System.Drawing.Size(15, 15);
             this.toLabel.TabIndex = 9;
@@ -194,14 +194,14 @@
             // 
             // valText2
             // 
-            this.valText2.Location = new System.Drawing.Point(218, 63);
+            this.valText2.Location = new System.Drawing.Point(247, 58);
             this.valText2.Name = "valText2";
             this.valText2.Size = new System.Drawing.Size(53, 25);
             this.valText2.TabIndex = 8;
             // 
             // valText1
             // 
-            this.valText1.Location = new System.Drawing.Point(122, 63);
+            this.valText1.Location = new System.Drawing.Point(151, 58);
             this.valText1.Name = "valText1";
             this.valText1.Size = new System.Drawing.Size(53, 25);
             this.valText1.TabIndex = 7;
@@ -210,18 +210,18 @@
             // 
             this.Prop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Prop.FormattingEnabled = true;
-            this.Prop.Location = new System.Drawing.Point(122, 29);
+            this.Prop.Location = new System.Drawing.Point(151, 24);
             this.Prop.Name = "Prop";
-            this.Prop.Size = new System.Drawing.Size(149, 23);
+            this.Prop.Size = new System.Drawing.Size(147, 23);
             this.Prop.TabIndex = 6;
             this.Prop.SelectedIndexChanged += new System.EventHandler(this.Prop_SelectedIndexChanged);
             this.Prop.Click += new System.EventHandler(this.Prop_Click);
             // 
             // Delete
             // 
-            this.Delete.Location = new System.Drawing.Point(73, 161);
+            this.Delete.Location = new System.Drawing.Point(88, 166);
             this.Delete.Name = "Delete";
-            this.Delete.Size = new System.Drawing.Size(156, 32);
+            this.Delete.Size = new System.Drawing.Size(156, 35);
             this.Delete.TabIndex = 5;
             this.Delete.Text = "删除";
             this.Delete.UseVisualStyleBackColor = true;
@@ -229,7 +229,7 @@
             // 
             // Select
             // 
-            this.Select.Location = new System.Drawing.Point(73, 108);
+            this.Select.Location = new System.Drawing.Point(88, 108);
             this.Select.Name = "Select";
             this.Select.Size = new System.Drawing.Size(156, 35);
             this.Select.TabIndex = 4;
@@ -239,7 +239,7 @@
             // 
             // Val
             // 
-            this.Val.Location = new System.Drawing.Point(122, 63);
+            this.Val.Location = new System.Drawing.Point(151, 58);
             this.Val.Name = "Val";
             this.Val.Size = new System.Drawing.Size(149, 25);
             this.Val.TabIndex = 3;
@@ -247,7 +247,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 68);
+            this.label6.Location = new System.Drawing.Point(47, 63);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(83, 15);
             this.label6.TabIndex = 1;
@@ -256,7 +256,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 29);
+            this.label5.Location = new System.Drawing.Point(36, 28);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 15);
             this.label5.TabIndex = 0;
@@ -269,7 +269,7 @@
             this.groupBox2.Controls.Add(this.FirstPage);
             this.groupBox2.Controls.Add(this.LineNum);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Location = new System.Drawing.Point(26, 359);
+            this.groupBox2.Location = new System.Drawing.Point(57, 354);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(276, 218);
             this.groupBox2.TabIndex = 13;
@@ -278,9 +278,9 @@
             // 
             // DownPage
             // 
-            this.DownPage.Location = new System.Drawing.Point(56, 172);
+            this.DownPage.Location = new System.Drawing.Point(46, 166);
             this.DownPage.Name = "DownPage";
-            this.DownPage.Size = new System.Drawing.Size(135, 31);
+            this.DownPage.Size = new System.Drawing.Size(176, 35);
             this.DownPage.TabIndex = 4;
             this.DownPage.Text = "下一页";
             this.DownPage.UseVisualStyleBackColor = true;
@@ -288,9 +288,9 @@
             // 
             // UpPage
             // 
-            this.UpPage.Location = new System.Drawing.Point(56, 121);
+            this.UpPage.Location = new System.Drawing.Point(46, 116);
             this.UpPage.Name = "UpPage";
-            this.UpPage.Size = new System.Drawing.Size(135, 35);
+            this.UpPage.Size = new System.Drawing.Size(176, 35);
             this.UpPage.TabIndex = 3;
             this.UpPage.Text = "上一页";
             this.UpPage.UseVisualStyleBackColor = true;
@@ -298,9 +298,9 @@
             // 
             // FirstPage
             // 
-            this.FirstPage.Location = new System.Drawing.Point(56, 72);
+            this.FirstPage.Location = new System.Drawing.Point(46, 67);
             this.FirstPage.Name = "FirstPage";
-            this.FirstPage.Size = new System.Drawing.Size(135, 33);
+            this.FirstPage.Size = new System.Drawing.Size(176, 35);
             this.FirstPage.TabIndex = 2;
             this.FirstPage.Text = "显示第一页";
             this.FirstPage.UseVisualStyleBackColor = true;
@@ -308,15 +308,15 @@
             // 
             // LineNum
             // 
-            this.LineNum.Location = new System.Drawing.Point(134, 31);
+            this.LineNum.Location = new System.Drawing.Point(165, 24);
             this.LineNum.Name = "LineNum";
-            this.LineNum.Size = new System.Drawing.Size(100, 25);
+            this.LineNum.Size = new System.Drawing.Size(57, 25);
             this.LineNum.TabIndex = 1;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 34);
+            this.label7.Location = new System.Drawing.Point(43, 29);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(112, 15);
             this.label7.TabIndex = 0;
@@ -343,7 +343,7 @@
             this.Controls.Add(this.View_Cour);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form_Cour";
-            this.Text = "Form_Cour";
+            this.Text = "课程窗口";
             this.Load += new System.EventHandler(this.Form_Cour_Load);
             ((System.ComponentModel.ISupportInitialize)(this.View_Cour)).EndInit();
             this.groupBox1.ResumeLayout(false);

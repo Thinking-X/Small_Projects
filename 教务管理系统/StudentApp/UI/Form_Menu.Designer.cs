@@ -33,13 +33,14 @@
             this.Course = new System.Windows.Forms.Button();
             this.SC = new System.Windows.Forms.Button();
             this.Custom = new System.Windows.Forms.Button();
+            this.Portrait = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(123, 95);
+            this.label1.Location = new System.Drawing.Point(166, 130);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(212, 25);
             this.label1.TabIndex = 0;
@@ -48,7 +49,7 @@
             // Student
             // 
             this.Student.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Student.Location = new System.Drawing.Point(128, 193);
+            this.Student.Location = new System.Drawing.Point(171, 206);
             this.Student.Name = "Student";
             this.Student.Size = new System.Drawing.Size(182, 83);
             this.Student.TabIndex = 1;
@@ -59,7 +60,7 @@
             // Course
             // 
             this.Course.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Course.Location = new System.Drawing.Point(394, 193);
+            this.Course.Location = new System.Drawing.Point(437, 206);
             this.Course.Name = "Course";
             this.Course.Size = new System.Drawing.Size(182, 83);
             this.Course.TabIndex = 2;
@@ -70,7 +71,7 @@
             // SC
             // 
             this.SC.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.SC.Location = new System.Drawing.Point(128, 338);
+            this.SC.Location = new System.Drawing.Point(704, 206);
             this.SC.Name = "SC";
             this.SC.Size = new System.Drawing.Size(182, 83);
             this.SC.TabIndex = 3;
@@ -81,7 +82,7 @@
             // Custom
             // 
             this.Custom.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Custom.Location = new System.Drawing.Point(394, 338);
+            this.Custom.Location = new System.Drawing.Point(437, 351);
             this.Custom.Name = "Custom";
             this.Custom.Size = new System.Drawing.Size(182, 83);
             this.Custom.TabIndex = 5;
@@ -89,11 +90,23 @@
             this.Custom.UseVisualStyleBackColor = true;
             this.Custom.Click += new System.EventHandler(this.Custom_Click);
             // 
+            // Portrait
+            // 
+            this.Portrait.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Portrait.Location = new System.Drawing.Point(171, 351);
+            this.Portrait.Name = "Portrait";
+            this.Portrait.Size = new System.Drawing.Size(182, 83);
+            this.Portrait.TabIndex = 6;
+            this.Portrait.Text = "头像信息表";
+            this.Portrait.UseVisualStyleBackColor = true;
+            this.Portrait.Click += new System.EventHandler(this.Portrait_Click);
+            // 
             // Form_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1103, 599);
+            this.Controls.Add(this.Portrait);
             this.Controls.Add(this.Custom);
             this.Controls.Add(this.SC);
             this.Controls.Add(this.Course);
@@ -101,7 +114,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Form_Menu";
-            this.Text = "Form_Menu";
+            this.Text = "选择菜单";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,5 +127,6 @@
         private System.Windows.Forms.Button Course;
         private System.Windows.Forms.Button SC;
         private System.Windows.Forms.Button Custom;
+        private System.Windows.Forms.Button Portrait;
     }
 }

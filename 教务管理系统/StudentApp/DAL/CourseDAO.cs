@@ -70,85 +70,75 @@ namespace StudentApp.DAL
             con.Close();
             return list;
         }
-        public void Insert_Cour(Course cou)
+        public bool Insert_Cour(Course cou)
         {
             string insert = string.Format("insert into course values ({0}, '{1}', '{2}', {3})", cou.No, cou.Cid, cou.Cname, cou.Credit);
             SqlCommand cmd = new SqlCommand(insert, con, tran);
             con.Open();
+            bool result = false;
             try
             {
                 if (cmd.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("成功插入一行记录！");
-                }
-                else
-                {
-                    MessageBox.Show("插入失败！");
+                    result = true;
                 }
             }
             catch
             {
-                MessageBox.Show("执行出错，插入失败！");
+                result = false;
             }
             con.Close();
-            return;
+            return result;
         }
-        public void Delete_Cour(string Id)
+        public bool Delete_Cour(string Id)
         {
             string delete = String.Format("delete course where cid = '{0}'", Id);
             SqlCommand cmd = new SqlCommand(delete, con, tran);
             con.Open();
+            bool result = false;
             try
             {
                 if (cmd.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("成功删除一行记录！");
-                }
-                else
-                {
-                    MessageBox.Show("删除失败！");
+                    result = true;
                 }
             }
             catch
             {
-                MessageBox.Show("执行出错，删除失败！");
+                result = false;
             }
             con.Close();
-            return;
+            return result;
         }
-        public void Updata_Cour(Course cou)
+        public bool Update_Cour(Course cou)
         {
             string update = string.Format("update course set no = {0}, cname = '{1}', credit = '{2}' where cid = {3}", cou.No, cou.Cname, cou.Credit, cou.Cid);
             SqlCommand cmd = new SqlCommand(update, con, tran);
             con.Open();
+            bool result = false;
             try
             {
                 if (cmd.ExecuteNonQuery() == 1)
                 {
-                    MessageBox.Show("成功更改一行记录！");
-                }
-                else
-                {
-                    MessageBox.Show("未作更改！");
+                    result = true;
                 }
             }
             catch
             {
-                MessageBox.Show("执行出错，更改失败！");
+                result = false;
             }
             con.Close();
-            return;
+            return result;
         }
-        public DataTableCollection Select_Cour1(string Prop)
+        public DataTable Select_Cour1(string Prop)
         {
             string select = "select " + Prop + " from course";
             SqlCommand cmd = new SqlCommand(select, con, tran);
-            con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataSet Data = new DataSet();
-            adapter.Fill(Data, "T");
+            DataTable Data = new DataTable();
+            adapter.Fill(Data);
             con.Close();
-            return Data.Tables;
+            return Data;
         }
         public List<Course> Select_Cour2(string Prop, string Val)
         {
@@ -160,6 +150,7 @@ namespace StudentApp.DAL
             con.Close();
             return list;
         }
+
         public List<Course> Select_Cour3(string Prop, string Scor1, string Scor2)
         {
             string select = String.Format("select * from course where {0} between {1} and {2}", Prop, Scor1, Scor2);

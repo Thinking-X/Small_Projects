@@ -48,9 +48,11 @@
     <Compile Include="DAL\CourseDAO.cs" />
     <Compile Include="DAL\CustomDAO.cs" />
     <Compile Include="DAL\DBHelper.cs" />
+    <Compile Include="DAL\PortrDAO.cs" />
     <Compile Include="DAL\SCDAO.cs" />
     <Compile Include="DAL\StudentDAO.cs" />
     <Compile Include="PublicClass\All.cs" />
+    <Compile Include="PublicClass\Portrait.cs" />
     <Compile Include="UI\Form_Cour.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +70,12 @@
     </Compile>
     <Compile Include="UI\Form_Menu.Designer.cs">
       <DependentUpon>Form_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Form_Portrait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_Portrait.Designer.cs">
+      <DependentUpon>Form_Portrait.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Form_SC.cs">
       <SubType>Form</SubType>
@@ -94,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Menu.resx">
       <DependentUpon>Form_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Form_Portrait.resx">
+      <DependentUpon>Form_Portrait.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_SC.resx">
       <DependentUpon>Form_SC.cs</DependentUpon>

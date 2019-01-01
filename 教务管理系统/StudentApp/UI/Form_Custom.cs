@@ -16,7 +16,9 @@ namespace StudentApp.UI
         public Form_Custom()
         {
             InitializeComponent();
-            
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
         }
         CustomDAO custom = new CustomDAO();
         private void SetVisible()
