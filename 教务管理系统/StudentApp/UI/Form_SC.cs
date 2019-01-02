@@ -81,9 +81,7 @@ namespace StudentApp
             }
             return;
         }
-        int i;//表示第几页
-        int count;//表示所查询的表一共几行
-        private void Display_Click(object sender, EventArgs e)
+        private void RefreshTable()
         {
             View_SC.AutoGenerateColumns = true;
             View_SC.DataSource = scDao.DisplayTableSc();
@@ -91,9 +89,21 @@ namespace StudentApp
             count = scDao.GainSumline();
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+            return;
+        }
+        int i;//表示第几页
+        int count;//表示所查询的表一共几行
+        private void Display_Click(object sender, EventArgs e)
+        {
+            RefreshTable();
             Update.Enabled = true;
             Delete.Enabled = true;
             return;
+        }
+        private void LineNum_TextChanged(object sender, EventArgs e)
+        {
+            UpPage.Enabled = false;
+            DownPage.Enabled = false;
         }
         private void FirstPage_Click(object sender, EventArgs e)
         {
@@ -187,6 +197,7 @@ namespace StudentApp
                 {
                     MessageBox.Show("成功插入一行记录！");
                     Clean();
+                    RefreshTable();
                 }
                 else
                 {
@@ -200,7 +211,8 @@ namespace StudentApp
                 if(scDao.Update_SC(sc))
                 {
                     MessageBox.Show("成功更改一行记录！");
-                    Clean(); 
+                    Clean();
+                    RefreshTable();
                 }
                 else
                 {
@@ -320,6 +332,7 @@ namespace StudentApp
             if (scDao.Delete_SC(View_SC.SelectedRows[0].Cells["Sid"].Value.ToString(), View_SC.SelectedRows[0].Cells["Cid"].Value.ToString()))
             {
                 MessageBox.Show("成功删除一行记录！");
+                RefreshTable();
             }
             else
             {

@@ -86,7 +86,7 @@ namespace StudentApp.UI
             }
             return;
         }
-        private void Display_Click(object sender, EventArgs e)
+        private void RefreshTable()
         {
             View_Cour.AutoGenerateColumns = true;
             View_Cour.DataSource = CourDao.DisplayTableCour();
@@ -94,10 +94,19 @@ namespace StudentApp.UI
             count = CourDao.GainSumline();
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+            return;
+        }
+        private void Display_Click(object sender, EventArgs e)
+        {
+            RefreshTable();
             Update.Enabled = true;
             Delete.Enabled = true;
-
             return;
+        }
+        private void LineNum_TextChanged(object sender, EventArgs e)
+        {
+            UpPage.Enabled = false;
+            DownPage.Enabled = false;
         }
         private void FirstPage_Click(object sender, EventArgs e)
         {
@@ -198,6 +207,7 @@ namespace StudentApp.UI
                 {
                     MessageBox.Show("成功插入一行记录！");
                     Clean();
+                    RefreshTable();
                 }
                 else
                 {
@@ -211,6 +221,7 @@ namespace StudentApp.UI
                 {
                     MessageBox.Show("成功更改一行记录！");
                     Clean();
+                    RefreshTable();
                 }
                 else
                 {
@@ -330,12 +341,13 @@ namespace StudentApp.UI
             if (CourDao.Delete_Cour(View_Cour.SelectedRows[0].Cells["Cid"].Value.ToString()))
             {
                 MessageBox.Show("成功删除一行记录！");
+                RefreshTable();
             }
             else
             {
                 MessageBox.Show("执行出错，删除失败！");
             }
             return;
-        }      
+        }
     }
 }

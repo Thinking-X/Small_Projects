@@ -386,6 +386,7 @@
             this.LineNum.Name = "LineNum";
             this.LineNum.Size = new System.Drawing.Size(64, 25);
             this.LineNum.TabIndex = 0;
+            this.LineNum.TextChanged += new System.EventHandler(this.LineNum_TextChanged);
             // 
             // Form_Stu
             // 

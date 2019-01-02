@@ -53,6 +53,12 @@
     <Compile Include="DAL\StudentDAO.cs" />
     <Compile Include="PublicClass\All.cs" />
     <Compile Include="PublicClass\Portrait.cs" />
+    <Compile Include="UI\Form_About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Form_About.Designer.cs">
+      <DependentUpon>Form_About.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Form_Cour.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     <Compile Include="PublicClass\Course.cs" />
     <Compile Include="PublicClass\SC.cs" />
     <Compile Include="PublicClass\Student.cs" />
+    <EmbeddedResource Include="UI\Form_About.resx">
+      <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Form_Cour.resx">
       <DependentUpon>Form_Cour.cs</DependentUpon>
     </EmbeddedResource>

@@ -27,3 +27,4 @@ G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.csproj.
 G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.exe
 G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.pdb
 G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.UI.Form_Portrait.resources
+G:\git\Small_Projects\教务管理系统\StudentApp\obj\Debug\StudentApp.UI.Form_About.resources

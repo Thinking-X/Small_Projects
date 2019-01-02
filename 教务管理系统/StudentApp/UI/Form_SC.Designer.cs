@@ -294,6 +294,7 @@
             this.LineNum.Name = "LineNum";
             this.LineNum.Size = new System.Drawing.Size(76, 25);
             this.LineNum.TabIndex = 1;
+            this.LineNum.TextChanged += new System.EventHandler(this.LineNum_TextChanged);
             // 
             // label6
             // 

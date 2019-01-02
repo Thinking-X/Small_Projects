@@ -34,6 +34,7 @@
             this.SC = new System.Windows.Forms.Button();
             this.Custom = new System.Windows.Forms.Button();
             this.Portrait = new System.Windows.Forms.Button();
+            this.About = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -101,11 +102,23 @@
             this.Portrait.UseVisualStyleBackColor = true;
             this.Portrait.Click += new System.EventHandler(this.Portrait_Click);
             // 
+            // About
+            // 
+            this.About.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.About.Location = new System.Drawing.Point(704, 351);
+            this.About.Name = "About";
+            this.About.Size = new System.Drawing.Size(182, 83);
+            this.About.TabIndex = 7;
+            this.About.Text = "关于";
+            this.About.UseVisualStyleBackColor = true;
+            this.About.Click += new System.EventHandler(this.About_Click);
+            // 
             // Form_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1103, 599);
+            this.Controls.Add(this.About);
             this.Controls.Add(this.Portrait);
             this.Controls.Add(this.Custom);
             this.Controls.Add(this.SC);
@@ -128,5 +141,6 @@
         private System.Windows.Forms.Button SC;
         private System.Windows.Forms.Button Custom;
         private System.Windows.Forms.Button Portrait;
+        private System.Windows.Forms.Button About;
     }
 }

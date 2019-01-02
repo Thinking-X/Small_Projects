@@ -50,6 +50,11 @@ namespace StudentApp
                         Portr.StartPosition = FormStartPosition.CenterScreen;
                         Application.Run(Portr);
                         break;
+                    case 6:
+                        Form_About About = new Form_About();
+                        About.StartPosition = FormStartPosition.CenterScreen;
+                        Application.Run(About);
+                        break;
                 }
                 Form_Menu menu_ = new Form_Menu();
                 menu_.StartPosition = FormStartPosition.CenterScreen;

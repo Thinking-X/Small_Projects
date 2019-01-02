@@ -49,5 +49,11 @@ namespace StudentApp
             this.Dispose();
             return;
         }
+        private void About_Click(object sender, EventArgs e)
+        {
+            Result = 6;
+            this.Dispose();
+            return;
+        }
     }
 }

@@ -98,17 +98,27 @@ namespace StudentApp
             }
             return;
         }
-        private void Display_Click(object sender, EventArgs e)
-        {          
+        private void RefreshTable()
+        {
             View_Stu.AutoGenerateColumns = true;
             View_Stu.DataSource = StuDao.DisplayTableStu();
             ChangeColumnNames(true, "");
             count = StuDao.GainSumline();
             UpPage.Enabled = false;
             DownPage.Enabled = false;
+            return;
+        }
+        private void Display_Click(object sender, EventArgs e)
+        {
+            RefreshTable();
             Update.Enabled = true;
             Delete.Enabled = true;
             return;
+        }
+        private void LineNum_TextChanged(object sender, EventArgs e)
+        {
+            UpPage.Enabled = false;
+            DownPage.Enabled = false;
         }
         private void FirstPage_Click(object sender, EventArgs e)
         {
@@ -142,7 +152,7 @@ namespace StudentApp
                 MessageBox.Show("往上已经没有了！");
                 return;
             }
-            int num = Convert.ToInt32(LineNum.Text);           
+            int num = Convert.ToInt32(LineNum.Text);
             View_Stu.AutoGenerateColumns = true;
             View_Stu.DataSource = StuDao.DisplayPage(num, i);
             ChangeColumnNames(true, "");
@@ -222,6 +232,7 @@ namespace StudentApp
                 {
                     MessageBox.Show("成功插入一行记录！");
                     Clean();
+                    RefreshTable();
                 }
                 else
                 {
@@ -235,6 +246,7 @@ namespace StudentApp
                 {
                     MessageBox.Show("成功更改一行记录！");
                     Clean();
+                    RefreshTable();
                 }
                 else
                 {
@@ -415,12 +427,13 @@ namespace StudentApp
             if (StuDao.Delete_Stu(View_Stu.SelectedRows[0].Cells["Sid"].Value.ToString()))
             {
                 MessageBox.Show("成功删除一行记录！");
+                RefreshTable();
             }
             else
             {
                 MessageBox.Show("执行出错，删除失败！");
             }
             return;
-        }       
+        } 
     }
 }
