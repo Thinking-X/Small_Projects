@@ -1,0 +1,149 @@
+﻿namespace SMarketProj.UI
+{
+    partial class Form_Purchase
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.Select = new System.Windows.Forms.Button();
+            this.Insert = new System.Windows.Forms.Button();
+            this.View_Purc = new System.Windows.Forms.DataGridView();
+            this.DisplayTable = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textVal = new System.Windows.Forms.TextBox();
+            this.comboProp = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.View_Purc)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // Select
+            // 
+            this.Select.Location = new System.Drawing.Point(520, 447);
+            this.Select.Name = "Select";
+            this.Select.Size = new System.Drawing.Size(221, 43);
+            this.Select.TabIndex = 9;
+            this.Select.Text = "查询";
+            this.Select.UseVisualStyleBackColor = true;
+            this.Select.Click += new System.EventHandler(this.Select_Click);
+            // 
+            // Insert
+            // 
+            this.Insert.Location = new System.Drawing.Point(281, 368);
+            this.Insert.Name = "Insert";
+            this.Insert.Size = new System.Drawing.Size(106, 50);
+            this.Insert.TabIndex = 6;
+            this.Insert.Text = "添加";
+            this.Insert.UseVisualStyleBackColor = true;
+            this.Insert.Click += new System.EventHandler(this.Insert_Click);
+            // 
+            // View_Purc
+            // 
+            this.View_Purc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.View_Purc.Location = new System.Drawing.Point(53, 53);
+            this.View_Purc.Name = "View_Purc";
+            this.View_Purc.RowTemplate.Height = 27;
+            this.View_Purc.Size = new System.Drawing.Size(822, 270);
+            this.View_Purc.TabIndex = 5;
+            this.View_Purc.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.View_Purc_RowPostPaint);
+            // 
+            // DisplayTable
+            // 
+            this.DisplayTable.Location = new System.Drawing.Point(95, 368);
+            this.DisplayTable.Name = "DisplayTable";
+            this.DisplayTable.Size = new System.Drawing.Size(100, 50);
+            this.DisplayTable.TabIndex = 10;
+            this.DisplayTable.Text = "显示全部";
+            this.DisplayTable.UseVisualStyleBackColor = true;
+            this.DisplayTable.Click += new System.EventHandler(this.DisplayTable_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(517, 360);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 15);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "选择查找方式";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(517, 401);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "请输入(选填)";
+            // 
+            // textVal
+            // 
+            this.textVal.Location = new System.Drawing.Point(621, 398);
+            this.textVal.Name = "textVal";
+            this.textVal.Size = new System.Drawing.Size(121, 25);
+            this.textVal.TabIndex = 13;
+            // 
+            // comboProp
+            // 
+            this.comboProp.FormattingEnabled = true;
+            this.comboProp.Location = new System.Drawing.Point(620, 357);
+            this.comboProp.Name = "comboProp";
+            this.comboProp.Size = new System.Drawing.Size(121, 23);
+            this.comboProp.TabIndex = 14;
+            // 
+            // Form_Purchase
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(928, 529);
+            this.Controls.Add(this.comboProp);
+            this.Controls.Add(this.textVal);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.DisplayTable);
+            this.Controls.Add(this.Select);
+            this.Controls.Add(this.Insert);
+            this.Controls.Add(this.View_Purc);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Name = "Form_Purchase";
+            this.Text = "进货明细表";
+            this.Load += new System.EventHandler(this.Form_Purchase_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.View_Purc)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button Select;
+        private System.Windows.Forms.Button Insert;
+        private System.Windows.Forms.DataGridView View_Purc;
+        private System.Windows.Forms.Button DisplayTable;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textVal;
+        private System.Windows.Forms.ComboBox comboProp;
+    }
+}
