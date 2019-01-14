@@ -264,7 +264,7 @@
             // labelWarn
             // 
             this.labelWarn.AutoSize = true;
-            this.labelWarn.Location = new System.Drawing.Point(37, 285);
+            this.labelWarn.Location = new System.Drawing.Point(38, 288);
             this.labelWarn.Name = "labelWarn";
             this.labelWarn.Size = new System.Drawing.Size(167, 15);
             this.labelWarn.TabIndex = 31;

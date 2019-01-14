@@ -36,6 +36,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\MaterialSkin.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,6 +62,8 @@
     <Compile Include="DAL\SaleDAO.cs" />
     <Compile Include="DAL\SListDAO.cs" />
     <Compile Include="DAL\UsersDAO.cs" />
+    <Compile Include="PublicClass\BillInfo.cs" />
+    <Compile Include="PublicClass\CreateBill.cs" />
     <Compile Include="PublicClass\Portrait.cs" />
     <Compile Include="PublicClass\SaleList.cs" />
     <Compile Include="PublicClass\SelfClosingMessageBox.cs" />

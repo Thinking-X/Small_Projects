@@ -47,11 +47,61 @@ namespace SMarketProj.UI
         private void InsertUpdate()
         {
             Product Prod_ = new Product();
-            Prod_.ProdNum = ProdNum.Text; 
+            Prod_.ProdNum = ProdNum.Text;
+            if (ProdName.Text.Trim() == "")
+            {
+                MessageBox.Show("请输入商品名！");
+                return;
+            }
             Prod_.ProdName = ProdName.Text.Trim();
-            Prod_.Quantity = Convert.ToInt32(Quantity.Text);
-            Prod_.BuyPrice = Convert.ToDecimal(BuyPrice.Text);
-            Prod_.SalePrice = Convert.ToDecimal(SalePrice.Text);
+            if(Quantity.Text.Trim() == "")
+            {
+                MessageBox.Show("请输入数量！");
+                return;
+            }
+            int quan;
+            bool x = int.TryParse(Quantity.Text, out quan);
+            if (x && quan > 0)
+            {
+                Prod_.Quantity = quan;
+            }
+            else
+            {
+                MessageBox.Show("请输入合法的数！");
+                return;
+            }
+            if(BuyPrice.Text.Trim() == "")
+            {
+                MessageBox.Show("请输入进价！");
+                return;
+            }
+            decimal buyPrice;
+            x = Decimal.TryParse(BuyPrice.Text, out buyPrice);
+            if (x && buyPrice > 0)
+            {
+                Prod_.BuyPrice = buyPrice;
+            }
+            else
+            {
+                MessageBox.Show("请输入合法的数！");
+                return;
+            } 
+            if (SalePrice.Text.Trim() == "")
+            {
+                MessageBox.Show("请输入售价！");
+                return;
+            }
+            decimal salePrice;
+            x = Decimal.TryParse(BuyPrice.Text, out salePrice);
+            if (x && salePrice > 0)
+            {
+                Prod_.SalePrice = salePrice;
+            }
+            else
+            {
+                MessageBox.Show("请输入合法的数！");
+                return;
+            }           
             if (IDUS.Text.Trim() == "确认添加")
             {
                 if (prodDAO.Insert_Prod(Prod_))

@@ -52,13 +52,33 @@ namespace SMarketProj.UI
                 MessageBox.Show("请输入进货数量！");
                 return;
             }
-            Purch.PurcQuan = Convert.ToInt32(PurcQuan.Text);
+            int quan;
+            bool x = int.TryParse(PurcQuan.Text, out quan);
+            if (x && quan > 0)
+            {
+                Purch.PurcQuan = quan;
+            }
+            else
+            {
+                MessageBox.Show("请输入合法的数！");
+                return;
+            }
             if(PurcTotal.Text.Trim() == "")
             {
                 MessageBox.Show("请输入进货总金额！");
                 return;
             }
-            Purch.PurcTotal = Convert.ToInt32(PurcTotal.Text.Trim());
+            int total;
+            x = int.TryParse(PurcTotal.Text, out total);
+            if (x && total > 0)
+            {
+                Purch.PurcTotal = total;
+            }
+            else
+            {
+                MessageBox.Show("请输入合法的数！");
+                return;
+            }
             if (purchDAO.Insert_Purch(Purch))
             {
                 MessageBox.Show("成功添加一条记录！");

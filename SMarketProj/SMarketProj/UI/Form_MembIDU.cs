@@ -14,7 +14,6 @@ namespace SMarketProj.UI
 {
     public partial class Form_MembIDU : Form
     {
-        public Form_Member PForm;
         MembDAO membDAO = new MembDAO();
         public Form_MembIDU(Member memb_, string display)
         {
@@ -37,7 +36,12 @@ namespace SMarketProj.UI
                 }
                 IdNum.Text = memb_.IdNum;
                 FAddress.Text = memb_.FAddress;
-            }  
+            }
+            else
+            {
+                Grade.Text = "10";
+                Grade.Enabled = false;
+            }
             this.IDU.Text = "确认" + display;
             this.Text = display;
         }
@@ -68,12 +72,12 @@ namespace SMarketProj.UI
                 return;
             }
             Memb_.MemPwd = MemPwd.Text.Trim();
-            if(Grade.Text.Trim() == "")
+            Memb_.Grade = 10;
+            if(MemName.Text.Trim() == "")
             {
-                MessageBox.Show("请输入会员积分！");
+                MessageBox.Show("请输入会员名！");
                 return;
             }
-            Memb_.Grade = Convert.ToInt32(Grade.Text);
             Memb_.MemName = MemName.Text.Trim();
             if (radio_Y.Checked == true)
             {

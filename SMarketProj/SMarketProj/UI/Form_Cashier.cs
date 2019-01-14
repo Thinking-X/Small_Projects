@@ -15,11 +15,12 @@ namespace SMarketProj.UI
 {
     public partial class Form_Cashier : Form
     {
-        public Form_Cashier()
+        public Form_Cashier(string cashier_)
         {
             InitializeComponent();
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.cashier = cashier_;
         }
         public bool result = false;
         ProdDAO prodDAO = new ProdDAO();
@@ -32,6 +33,7 @@ namespace SMarketProj.UI
         int count;//表示一共几种商品
         double totalPrice = 0;//正常购买的总价
         List<Product> list;
+        string cashier;
         private void Form_Cashier_Load(object sender, EventArgs e)
         {
             list = prodDAO.SelectAllProd();
@@ -81,6 +83,12 @@ namespace SMarketProj.UI
                 }
             }
             return false;
+        }
+        private void numericQuan_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
+                e.Handled = true;
+            return;
         }
         private void Append_Click(object sender, EventArgs e)
             //加入购物车
@@ -218,7 +226,7 @@ namespace SMarketProj.UI
             user.RoleNum = "100";
             if (userDAO.Proving(user))
             {
-                SelfClosingMessageBox.StartKiller("提示", 500);
+                SelfClosingMessageBox.StartKiller("提示", 1000);
                 MessageBox.Show("输入正确！", "提示");
                 panelLogin.Visible = false;
                 panelMem.Visible = true;
@@ -227,7 +235,7 @@ namespace SMarketProj.UI
             }
             else
             {
-                MessageBox.Show("输入错误！");
+                MessageBox.Show("会员号或密码输入有误！");
             }
             return;
         }
@@ -242,6 +250,7 @@ namespace SMarketProj.UI
                 panelMem.Visible = false;
                 panelNor.Visible = false;
                 Append.Enabled = false;
+                ToolStripMenuRemove.Enabled = false;
             }
             if (Status == "否")
             {
@@ -250,12 +259,14 @@ namespace SMarketProj.UI
                 panelLogin.Visible = false;
                 panelMem.Visible = false;
                 Append.Enabled = false;
+                ToolStripMenuRemove.Enabled = false;
             }
+            return;
         }
         private void Settlement(bool status)
         {
-            bool resultSale;//SaleDetail添加结果
-            bool resultSList;//SaleList添加结果
+            bool resultSale;//SaleDetail表的添加结果
+            bool resultSList;//SaleList表的添加结果
             bool resultProd;//商品更改结果
             bool resultMemb;//会员更改结果
             string listNum = Guid.NewGuid().ToString().Substring(0, 8);
@@ -277,6 +288,7 @@ namespace SMarketProj.UI
             }
             sale.SaleTabNum = listNum;
             sale.SaleDate = Convert.ToDateTime(DateTime.Now.ToShortDateString().ToString());
+            CreateBill createBill = new CreateBill();
             if (status)
             {
                 sale.MemNum = textNum.Text.Trim();
@@ -287,6 +299,9 @@ namespace SMarketProj.UI
                 {
                     SelfClosingMessageBox.StartKiller("提示", 2000);
                     MessageBox.Show("结算完毕！正在打印小票！", "提示");
+                    
+                    createBill.SkConsume(sale, totalPrice.ToString(), cashier);
+
                     MessageBox.Show("小票已生成！欢迎您再次光临！");
                     result = true;
                     this.Dispose();
@@ -305,6 +320,9 @@ namespace SMarketProj.UI
                 {
                     SelfClosingMessageBox.StartKiller("提示", 2000);
                     MessageBox.Show("结算完毕！正在打印小票！", "提示");
+
+                    createBill.SkConsume(sale, totalPrice.ToString(), cashier);
+
                     MessageBox.Show("小票已生成！欢迎您再次光临！");
                     result = true;
                     this.Dispose();
@@ -327,13 +345,7 @@ namespace SMarketProj.UI
         {
             Settlement(false);
             return;
-        }
-        private void numericQuan_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == '.' || e.KeyChar == ',' || e.KeyChar == '-')
-                e.Handled = true;
-            return;
-        }       
+        }      
         private void ToolStripMenuRemove_Click(object sender, EventArgs e)
         {
             int sign = listShop.SelectedIndex;

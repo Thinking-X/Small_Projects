@@ -106,6 +106,7 @@
             // 
             // comboProp
             // 
+            this.comboProp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboProp.FormattingEnabled = true;
             this.comboProp.Location = new System.Drawing.Point(620, 357);
             this.comboProp.Name = "comboProp";

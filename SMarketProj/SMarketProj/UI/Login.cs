@@ -25,8 +25,9 @@ namespace Login_Form_Design_Example
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo700, Primary.Indigo100, Accent.Pink200, TextShade.WHITE);
         }
-        public string result = "000";
+        public string status = "000";
         public string userNum = "";
+        public bool result = false;
         UsersDAO userDAO = new UsersDAO();
         private void Login_Load(object sender, EventArgs e)
         {           
@@ -45,22 +46,29 @@ namespace Login_Form_Design_Example
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            if (txtNum.Text.Trim() == "")
+            {
+                lblErrorMessage.ForeColor = Color.Red;
+                lblErrorMessage.Text = "用户名不可为空！";
+                return;
+            }
+            if(txtPwd.Text.Trim() == "")
+            {
+                lblErrorMessage.ForeColor = Color.Red;
+                lblErrorMessage.Text = "密码不可为空！";
+                return;
+            }
             Users user = new Users();
             user.RoleNum = comboRole.SelectedValue.ToString().Trim();
             user.UserNum = txtNum.Text.Trim();
-            user.UserPwd = txtPwd.Text.Trim();
-            if (txtNum.Text.Trim() == "" && txtPwd.Text.Trim() == "")
-            {
-                lblErrorMessage.ForeColor = Color.Red;
-                lblErrorMessage.Text = "用户名和密码不可为空！";
-                return;
-            }
+            user.UserPwd = txtPwd.Text.Trim();          
             if (userDAO.Proving(user))
             {
                 SelfClosingMessageBox.StartKiller("提示", 500);
                 MessageBox.Show("输入正确！", "提示");
-                result = user.RoleNum;
+                status = user.RoleNum;
                 userNum = user.UserNum;
+                result = true;
                 if (cbxRemember.Checked)
                 {
                     SMarketProj.Properties.Settings.Default.UserName = txtNum.Text.Trim();

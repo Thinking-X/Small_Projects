@@ -27,23 +27,32 @@ namespace SMarketProj
             Login log = new Login();
             log.StartPosition = FormStartPosition.CenterScreen;
             Application.Run(log);
-            string Status = log.result;
+            string Status = log.status;
             string userNum = log.userNum;
-            log.Dispose();
-            switch (Status)
+            bool result = log.result;
+            while(result)
             {
-                case "000":
-                    break;
-                case "1":
-                    Option1();
-                    break;
-                case "10":
-                    Option10();
-                    break;
-                case "100":
-                    Option100(userNum);
-                    break;
-            }
+                switch (Status)
+                {
+                    case "000":
+                        break;
+                    case "1":
+                        Option1();
+                        break;
+                    case "10":
+                        Option10(userNum);
+                        break;
+                    case "100":
+                        Option100(userNum);
+                        break;
+                }
+                Login log_ = new Login();
+                log_.StartPosition = FormStartPosition.CenterScreen;
+                Application.Run(log_);
+                Status = log_.status;
+                userNum = log_.userNum;
+                result = log_.result;
+            }          
             return;
         }
         public static void Option1()
@@ -89,15 +98,15 @@ namespace SMarketProj
             }
             return;
         }
-        public static void Option10()
+        public static void Option10(string userNum)
         {
-            Form_Cashier Cashier = new Form_Cashier();
+            Form_Cashier Cashier = new Form_Cashier(userNum);
             Cashier.StartPosition = FormStartPosition.CenterScreen;
             Application.Run(Cashier);
             bool Result = Cashier.result;
             while (Result)
             {
-                Form_Cashier cash_ = new Form_Cashier();
+                Form_Cashier cash_ = new Form_Cashier(userNum);
                 cash_.StartPosition = FormStartPosition.CenterScreen;
                 Application.Run(cash_);
                 Result = cash_.result;
