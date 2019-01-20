@@ -68,15 +68,17 @@ namespace StudentApp.UI
             pathName = file.FileName;
             if (string.IsNullOrWhiteSpace(pathName))
             {
-                try
-                { 
-                    Image img = Image.FromFile(pathName);
-                }
-                catch
-                {
-                    MessageBox.Show("请选择正确的图片类型");
-                    return;
-                }
+                MessageBox.Show("请选择图片！");
+                return;
+            }
+            try
+            {
+                Image img = Image.FromFile(pathName);
+            }
+            catch
+            {
+                MessageBox.Show("请选择正确的图片类型！");
+                return;
             }
             DialogResult dr = MessageBox.Show("确定要更改吗?", "提示：", MessageBoxButtons.OKCancel);
             if (dr == DialogResult.Cancel)
@@ -200,15 +202,17 @@ namespace StudentApp.UI
             pathName = file.FileName;
             if (string.IsNullOrWhiteSpace(pathName))
             {
-                try
-                {
-                    Image img = Image.FromFile(pathName);
-                }
-                catch
-                {
-                    MessageBox.Show("请选择正确的图片类型");
-                    return;
-                }
+                MessageBox.Show("请选择图片！");
+                return;
+            }
+            try
+            {
+                Image img = Image.FromFile(pathName);
+            }
+            catch
+            {
+                MessageBox.Show("请选择正确的图片类型！");
+                return;
             }
             DialogResult dr = MessageBox.Show("确定要添加吗?", "提示：", MessageBoxButtons.OKCancel);
             if (dr == DialogResult.Cancel)
