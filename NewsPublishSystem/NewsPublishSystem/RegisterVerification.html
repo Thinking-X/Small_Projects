@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="CSS/semantic.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="CSS/register.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="Path/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="Path/dist/css/bootstrapValidator.css" />
+    <script type="text/javascript" src="Path/vendor/jquery/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="Path/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Path/dist/js/bootstrapValidator.js"></script>
+    <title>新用户注册</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <section>
+                <div class="page-header">
+                    <h1 class="ui center aligned header">注册</h1>
+                </div>
+                <div class="col-lg-9 col-lg-offset-2 ">
+                    <form id="defaultForm" method="post" class="form-horizontal" action="">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">用户ID</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="username" id="UserID"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">电子邮箱</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="email" id="Email"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">密码</label>
+                            <div class="col-lg-5">
+                                <input type="password" class="form-control" name="password" id="Pwd"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">确认密码</label>
+                            <div class="col-lg-5">
+                                <input type="password" class="form-control" name="confirmPassword" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">性别</label>
+                            <div class="col-lg-5">
+                                <div class="radio">
+                                    <label style="position:relative;margin-right:10%;">
+                                        <input type="radio" name="gender" id="Gender" value="male" /> 男
+                                    </label>
+                                </div>
+                                <div class="radio" >
+                                    <label>
+                                        <input type="radio" name="gender" id="Gender" value="female" /> 女
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">出生日期</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="birthday" id="Birthdate" /> (年/月/日)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" name="captcha" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-9 col-lg-offset-2">
+                                <div class="field">
+                                    <button type="submit" class="ui red button register" name="signup" id="confirm" value="Sign up">确认注册</button>
+                                </div>
+                                <div class="field">
+                                    <button type="button" class="ui red button register" id="resetBtn">重置</button>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="ui basic segment container footer">
+                            <div class="bottom" style="position:absolute; margin-left:24%;">
+                                <br />
+                                <div class="ui divider"></div>
+                                <button type="button" name="button" class="ui circular red button backtoindex">
+                                    <img src="Images/login/homeicon.png" style="position:absolute;left:18%;top:10%;">
+                                    <h4>首页</h4>
+                                </button>
+                                <div class="ui image title">
+                                    <img src="Images/login/logo.jpg" alt="" />
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    // 生成验证码
+    function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    };
+    $('#captchaOperation').html([randomNumber(1, 100), '+', randomNumber(1, 100), '='].join(' '));
+
+    $('#defaultForm').bootstrapValidator({
+        //live: 'disabled', //是否验证表单
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {           
+            username: {
+                message: '该用户ID无效',
+                validators: {
+                    notEmpty: {
+                        message: '用户ID不能为空'
+                    },
+                    stringLength: {
+                        min: 0,
+                        max: 30,
+                        message: '用户ID必须大于0且小于30个字符长'
+                    },
+                    //regexp: {
+                    //    regexp: /^[a-zA-Z0-9_\.]+$/,
+                    //    message: '用户ID只能包含字母，数字，点和下划线'
+                    //},
+                    //remote: {
+                    //    url: 'remote.php',
+                    //    message: '该用户ID无效'
+                    //},
+                    different: {
+                        field: 'password',
+                        message: '用户ID不能与密码一致'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    emailAddress: {
+                        message: '输入不是有效的电子邮件地址'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    identical: {
+                        field: 'confirmPassword',
+                        message: ''
+                    },
+                    different: {
+                        field: 'username',
+                        message: '密码不能与用户ID一致'
+                    }
+                }
+            },
+            confirmPassword: {
+                validators: {
+                    notEmpty: {
+                        message: '密码不能为空'
+                    },
+                    identical: {
+                        field: 'password',
+                        message: '两次密码不一致'
+                    },
+                    different: {
+                        field: 'username',
+                        message: '密码不能与用户ID一致'
+                    }
+                }
+            },
+            birthday: {
+                validators: {
+                    date: {
+                        format: 'YYYY/MM/DD',
+                        message: '生日不能为空'
+                    }
+                }
+            },
+            gender: {
+                validators: {
+                    notEmpty: {
+                        message: '请选择性别'
+                    }
+                }
+            },
+            captcha: {
+                validators: {
+                    callback: {
+                        message: '计算错误',
+                        callback: function(value, validator) {
+                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+                            return value == sum;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    $('#resetBtn').click(function() {
+        $('#defaultForm').data('bootstrapValidator').resetForm(true);
+    });
+
+    $("#confirm").click(function () {
+        $('#defaultForm').bootstrapValidator('validate');
+        if (!$('#defaultForm').data('bootstrapValidator').isValid()) return;
+        $.post("../Ajax/Register.ashx?code=1001", {
+            username: $("#UserID").val(),
+            email: $("#Email").val(),
+            password: $("#Pwd").val(),
+            gender: $("#Gender").val(),
+            birthday: $("#Birthdate").val()
+        },
+        function (d, s) {
+            if (s == "success") {
+                if (d.states == 1) {
+                    $(location).attr("href", "default.aspx");
+                }
+                else if (d.states == 0) {
+                    alert(d.info);
+                }
+                else {
+                    alert(d.info);
+                }
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

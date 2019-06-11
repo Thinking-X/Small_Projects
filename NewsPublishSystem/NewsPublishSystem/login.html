@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录页</title>
+    <link rel="stylesheet" href="css/semantic.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="css/login.css" media="screen" title="no title" charset="utf-8">
+    <style>
+        /*.label_on {
+            border: 2px solid red;
+        }
+        .checkBoxRedOutline {
+            outline: 1px solid red
+        }
+
+        #checkbox-1 {
+            display: none;
+            visibility: hiiden;
+        }
+
+            #checkbox-1  label {
+                color: blue;
+            }
+
+            #checkbox-1:checked  label {
+                color: red;
+            }*/
+    </style>
+    
+</head>
+  <body>
+      <form action="/api/signin" method="post">
+
+          <div class="ui basic segment container content">
+              <h1 class="ui center aligned header">登录</h1>
+
+              <div class="ui form">
+                  <div class="field">
+                      <div class="ui  image top">
+                          <img src="Images/login/usericon.png" alt="" />
+                      </div>
+                      <input type="text" placeholder="邮箱名" required autofocus>
+                  </div>
+                  <div class="field">
+                      <div class="ui  image top">
+                          <img src="Images/login/lockicon.png" alt="" />
+                      </div>
+                      <input type="text" placeholder="密码" required>
+                  </div>
+                  <div class="two fields">
+                      <div class="field" style="top:18px;">
+                          <div class="ui image bottom" style="top:6px;">
+                              <img src="Images/login/checkboxicon.png" alt="" />
+                          </div>
+                          <label><a href="index.html"><font size=3>记住我</font></a></label>
+
+                          <div class="ui image bottom" style="top:29px;">
+                              <img src="Images/login/passwordicon.png" alt="" />
+                          </div>
+                          <label><a href="index.html"><font size=3>忘记密码&nbsp;&nbsp;</font></a> | <a href="index.html"><font size=3>&nbsp;&nbsp;重新注册</font></a></label>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+          <div class="field">
+              <button class="ui right floated red circular button" name="button">确认登录</button>
+          </div>
+          <div class="ui basic segment container footer">
+              <div class="bottom">
+                  <div class="ui divider"></div>
+                  <button type="button" name="button" class="ui circular red button backtoindex">
+                      <img src="Images/login/homeicon.png" style="position:absolute;left:18%;top:10%;">
+                      <h4>首页</h4>
+                  </button>
+                  <div class="ui image title">
+                      <img src="Images/login/logo.jpg" alt="" />
+                  </div>
+              </div>
+          </div>
+      </form>
+
+      <!--<input class="label_on " type="checkbox" name="method" value="plus" checked>plus<br>
+      <input class="checkBoxRedOutline label_on " type="checkbox" name="method" value="minus">minus<br>
+      <input type="radio" name="method" value="plus">plus<br>
+      <input type="radio" name="method" value="minus" checked>minus<br>-->
+      
+  </body>
+</html>
