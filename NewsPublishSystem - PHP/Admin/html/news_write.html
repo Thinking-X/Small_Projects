@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>今日报资讯后台管理</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.form.min.js"></script>
+	<script src="../tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="../js/tinymce_setup.js"></script>
+</head>
+<body>
+    <div class="breadcrub">
+        当前位置：新闻管理>新闻内容编写
+    </div>
+    <div class="pannel">
+        <form class="news_edit" id="contentForm" method="post" enctype="multipart/form-data"><!-- action="news_write.php" -->
+            <h3 class="review_title">新闻内容编写</h3>
+            <div class="form_group">
+                <label>新闻标题：</label>
+                <input type="text" class="input_txt2" name="Title" id="nTitle" value="">
+            </div>
+            <div class="form_group">
+                <label>新闻分类：</label>
+                <select class="sel_opt" name="StyleID" id="nType">
+                    <option value="1">国际</option>
+                    <option value="2">国内</option>
+                    <option value="3">军事</option>
+                    <option value="4">体育</option>
+                    <option value="5">娱乐</option>
+                    <option value="6">财经</option>
+                    <option value="7">科技</option>
+                    <option value="8">时尚</option>
+                </select>
+            </div>
+            <div class="form_group">
+                <label>新闻来源：</label>
+                <!--<textarea class="input_multxt" name="NewsSource" id="nSource">原创(若非原创，请更改)</textarea>-->
+                <input type="text" class="input_txt2" name="NewsSource" id="nSource" value="原创(若非原创，请更改)" />
+            </div>
+            <!--<div class="form_group">
+                <label>索引图片：</label>
+                <img src="" alt="索引图片" class="index_pic">
+            </div>-->
+            <div class="form_group">
+                <label>索引图片：</label>
+                <!--<input type="hidden" name="MAX_FILE_SIZE" value="10240000" />
+				<input type="file" name="myPicture" size="25" maxlength="10" />
+				size代表控件尺寸，maxlength代表上传文件的最大尺寸-->
+				
+                <input type="file" onchange="showPic(this)" name="myPicture" id="nPic" maxlength="10"/>
+                <img src="" id="pic" class="index_pic" /> 
+                
+            </div>
+            <div class="form_group">
+                <label>新闻内容：</label>
+                <div class="rich_wrap fl">
+                    <input type="text" class="input_area" id="rich_content" name="NewsContent" value="" />
+                </div>
+            </div>
+            
+            <div class="form_group indent_group line_top">
+                <input type="button" value="确定" class="confirm" id="confirmBtn" name="submitBtn"/>
+                <input type="reset" value="取消" class="cancel" onclick="cancel()" />
+            </div>
+        </form>
+        <script type="text/javascript">
+        function getFullPath(obj) {
+            if (obj) {
+                //兼容chrome、火狐等，HTML5获取路径       
+                if (typeof FileReader != "undefined") {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById("pic").src = e.target.result + "";
+                    }
+                    reader.readAsDataURL(obj.files[0]);
+                } 
+            }
+        };
+        function showPic(obj) { //选择图片后，将图片加载出来
+            var fullPath = getFullPath(obj); 
+        };
+        
+        function cancel() { //点下取消按钮后，清除所选图片
+        	document.getElementById("pic").src = "";
+        	//$("#pic").src = "";无效的写法
+        }
+        
+        $('#confirmBtn').click(function () {
+        	var file_data = $('#nPic').prop('files')[0];   
+    	    var form_data = new FormData();                  
+    	    form_data.append('file', file_data);
+    	    form_data.append('Title', $("#nTitle").val());
+    	    form_data.append('StyleID', $("#nType").val());
+    	    form_data.append('NewsSource', $("#nSource").val());
+    	    form_data.append('NewsContent', tinyMCE.activeEditor.getContent());
+    	    		
+    	    $.ajax({
+    	        url: "../../Ajax/HandleAjax.php?requestPage=news_write",
+    	        dataType: 'text',  // what to expect back from the PHP script, if anything
+    	        cache: false,
+    	        contentType: false,
+    	        processData: false,
+    	        data: form_data,                         
+    	        type: 'post',
+    	        success: function(php_script_response)
+    	        //若url请求出错，则返回的php_script_response即为错误信息
+    	        //若url请求没错，则返回的php_script_response即为json_encode()里面的值
+    	        {
+    	            if(php_script_response == "1")
+					{
+    	            	alert("发布成功！");
+    	            	window.location.reload();
+					}
+    	            else
+    	            {
+    	            	alert("发布失败！");
+    	            }
+    	        }
+    	     });
+    	});
+        //$.post("news_write.php", {
+        //        OperationType: "insert",
+        //        Title: $("#nTitle").val(),
+        //        StyleID: $("#nType").val(),
+        //        NewsSource: $("#nSource").val(),
+        //        Pic: file_data,
+        //        NewsContent: tinyMCE.activeEditor.getContent()
+        //    	},
+        //        function (data) 
+        //        {
+        //            if (data == "success") 
+        //            {
+        //                alert("success");
+        //                //window.location.reload();//页面刷新
+        //            }
+        //        }
+        //    );
+        //});
+        </script>
+    </div>
+</body>
+</html >

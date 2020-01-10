@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>今日报资讯后台管理</title>
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <div class="login_logo">
+        <img src="../Images/logo.png" alt="" />
+    </div>
+    <form method="post" class="login_form">
+        <h1 class="login_title">用户登录</h1>
+        <input type="text" name="username" id="username" placeholder="手机号" class="input_txt">
+        <input type="password" name="password" id="password" placeholder="密码" class="input_txt">
+        <div class="error_tip">错误提示</div>
+        <!--<input type="submit" value="登 录" class="input_sub" onclick="window.open('index.html')">-->
+        <!--<input type="button" value="登 录" class="input_sub" onclick="location.replace('index.html')" />-->
+        <input type="button" value="登 录" class="input_sub" id="confirmBtn" />
+    </form>
+    <div class="login_bg"></div>
+    <script type="text/javascript">
+        $('#confirmBtn').click(function () {
+            $.post("../../Ajax/HandleAjax.php?requestPage=login", 
+            		{
+		                username: $("#username").val(),
+		                password: $("#password").val()
+	            	},
+		            function(data)
+		            {
+	            		if(data=="1")
+	            		{
+	            			window.location.href='index.html';
+	            		}
+                    	else
+                    	{
+                    		alert("登录失败！");
+                    	}
+		        	}
+                );
+        });
+    </script>
+</body>
+</html>
